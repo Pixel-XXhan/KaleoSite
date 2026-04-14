@@ -54,12 +54,10 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  const isHomePage = location.pathname === '/';
-
   // Determine colors based on state
   // Unscrolled on homepage -> blends entirely with cover image (requires white text)
   // Scrolled or Not on homepage -> dynamic theme colors inside a floating pill
-  const isTransparentTop = !isScrolled && isHomePage;
+  // Scrolled or Not on homepage -> dynamic theme colors inside a floating pill
   
   const textColorClass = 'text-foreground';
   const hoverColorClass = 'hover:text-foreground/80';
@@ -70,13 +68,13 @@ const Navbar = () => {
       opacity: 1, 
       scale: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } 
     },
     exit: { 
       opacity: 0, 
       scale: 0.95,
       y: -20,
-      transition: { duration: 0.4, ease: 'easeInOut' } 
+      transition: { duration: 0.4, ease: 'easeInOut' as const } 
     }
   };
 

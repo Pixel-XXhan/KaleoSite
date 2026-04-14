@@ -9,11 +9,11 @@ const pageVariants = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const }
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.5, ease: 'easeInOut' }
+    transition: { duration: 0.5, ease: 'easeInOut' as const }
   }
 };
 
@@ -56,7 +56,7 @@ const Craft = () => {
   useEffect(() => {
     let ctx = gsap.context(() => {
       // Stacked Pinning Effect
-      const panels = panelsRef.current.filter(Boolean);
+      const panels = panelsRef.current.filter((p): p is HTMLDivElement => !!p);
       panels.forEach((panel, i) => {
         if (i !== panels.length - 1) {
           ScrollTrigger.create({
@@ -148,7 +148,7 @@ const Craft = () => {
         {crafts.map((craft, i) => (
           <div 
             key={i}
-            ref={el => panelsRef.current[i] = el}
+            ref={(el) => { panelsRef.current[i] = el; }}
             className={`w-full h-screen md:h-screen sticky top-0 overflow-hidden shadow-2xl ${craft.bgColor} ${craft.textColor} border-t border-foreground/5`}
           >
             <div className="darken-overlay absolute inset-0 bg-black opacity-0 z-20 pointer-events-none" />

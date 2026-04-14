@@ -9,11 +9,11 @@ const pageVariants = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const }
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.5, ease: 'easeInOut' }
+    transition: { duration: 0.5, ease: 'easeInOut' as const }
   }
 };
 
