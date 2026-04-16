@@ -26,39 +26,39 @@ const BreathSection = () => {
       gsap.set(text, { opacity: 0, scale: 1.1 });
       gsap.set(subtitle, { opacity: 0, y: 20 });
 
-      // Scale up animation on scroll
-      const trigger = ScrollTrigger.create({
-        trigger: section,
-        start: 'top 80%',
-        end: 'center center',
-        scrub: 1.2,
-        onUpdate: (self) => {
-          const progress = self.progress;
-
-          // Container scale and border radius
-          gsap.set(container, {
-            scale: 0.85 + progress * 0.15,
-            borderRadius: `${60 - progress * 40}px`,
-          });
-
-          // Text reveal
-          gsap.set(text, {
-            opacity: progress,
-            scale: 1.1 - progress * 0.1,
-          });
-
-          // Subtitle reveal
-          if (progress > 0.4) {
-            const subtitleProgress = (progress - 0.4) * 1.66;
-            gsap.set(subtitle, {
-              opacity: Math.min(subtitleProgress, 1),
-              y: 20 - Math.min(subtitleProgress, 1) * 20,
-            });
-          }
-        },
+      // Scale up animation on scroll (optimized timeline)
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          end: 'center center',
+          scrub: 1.2,
+        }
       });
 
-      triggerRef.current = trigger;
+      tl.to(container, {
+        scale: 1,
+        borderRadius: '20px',
+        ease: 'none'
+      }, 0);
+
+      tl.to(text, {
+        opacity: 1,
+        scale: 1,
+        ease: 'none'
+      }, 0);
+
+      tl.to(subtitle, {
+        opacity: 1,
+        y: 0,
+        ease: 'none'
+      }, 0.4); // Start this animation when others are 40% through
+
+      return () => {
+        ScrollTrigger.getAll().forEach(t => {
+          if (t.vars.trigger === section) t.kill();
+        });
+      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -119,7 +119,7 @@ const BreathSection = () => {
       {/* Decorative elements */}
       {breathSectionConfig.description && (
         <div className="max-w-4xl mx-auto px-6 md:px-8 mt-24 md:mt-32 text-center">
-          <p className="font-body text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-display text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed italic">
             {breathSectionConfig.description}
           </p>
         </div>

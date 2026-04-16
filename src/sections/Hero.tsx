@@ -42,51 +42,35 @@ const Hero = () => {
       '-=0.8'
     );
 
-    // Scroll-driven parallax
-    const parallaxTriggers: ScrollTrigger[] = [];
-
-    const imageTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => {
-        gsap.set(image, { y: self.progress * 150 });
-      },
+    // Scroll-driven parallax using standard GSAP scrollTrigger (more efficient)
+    const tlParallax = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      }
     });
-    parallaxTriggers.push(imageTrigger);
 
-    const titleTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: '50% top',
-      scrub: true,
-      onUpdate: (self) => {
-        gsap.set(title, {
-          opacity: 1 - self.progress * 1.5,
-          y: self.progress * -50
-        });
-        gsap.set(subtitle, {
-          opacity: 1 - self.progress * 2,
-          y: self.progress * -30
-        });
-      },
+    tlParallax.to(image, { y: 150, ease: 'none' }, 0);
+    tlParallax.to(overlay, { opacity: 0.3, ease: 'none' }, 0);
+    
+    gsap.to([title, subtitle], {
+      opacity: 0,
+      y: -50,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: '50% top',
+        scrub: true,
+      }
     });
-    parallaxTriggers.push(titleTrigger);
-
-    const overlayTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => {
-        gsap.set(overlay, { opacity: self.progress * 0.3 });
-      },
-    });
-    parallaxTriggers.push(overlayTrigger);
 
     return () => {
-      parallaxTriggers.forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach(t => {
+        if (t.vars.trigger === section) t.kill();
+      });
       tl.kill();
     };
   }, []);

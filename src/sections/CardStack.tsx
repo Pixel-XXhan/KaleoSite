@@ -9,7 +9,7 @@ const CardStack = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const triggerRef = useRef<ScrollTrigger | null>(null);
+
 
   const cards = cardStackConfig.cards;
 
@@ -29,49 +29,40 @@ const CardStack = () => {
       });
     });
 
-    // Create pinned scroll animation
-    const trigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: `+=${cardElements.length * 100}%`,
-      pin: wrapper,
-      pinSpacing: true,
-      scrub: 1,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const segmentSize = 1 / cardElements.length;
-
-        cardElements.forEach((card, index) => {
-          const cardStart = index * segmentSize;
-          const cardProgress = gsap.utils.clamp(0, 1, (progress - cardStart) / segmentSize);
-
-          if (index === 0) {
-            // First card - fade out as user scrolls
-            gsap.set(card, {
-              opacity: 1 - cardProgress * 0.3,
-              scale: 1 - cardProgress * 0.05,
-            });
-          } else {
-            // Other cards - slide up from bottom
-            const prevCardEnd = index * segmentSize;
-            const prevProgress = gsap.utils.clamp(0, 1, (progress - prevCardEnd + segmentSize) / segmentSize);
-
-            gsap.set(card, {
-              y: (1 - prevProgress) * window.innerHeight * 0.8,
-              opacity: prevProgress,
-              zIndex: index,
-            });
-          }
-        });
-      },
+    // Create optimized pinned timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: `+=${cardElements.length * 100}%`,
+        pin: wrapper,
+        pinSpacing: true,
+        scrub: 1,
+      }
     });
 
-    triggerRef.current = trigger;
+    cardElements.forEach((card, index) => {
+      if (index === 0) {
+        // First card fades slightly
+        tl.to(card, {
+          opacity: 0.7,
+          scale: 0.95,
+          ease: 'none',
+        }, 0);
+      } else {
+        // Other cards slide in sequentially
+        tl.fromTo(card,
+          { y: window.innerHeight * 0.8, opacity: 0 },
+          { y: 0, opacity: 1, ease: 'none' },
+          (index - 1) / (cardElements.length - 1) // Stagger cards along the timeline
+        );
+      }
+    });
 
     return () => {
-      if (triggerRef.current) {
-        triggerRef.current.kill();
-      }
+      ScrollTrigger.getAll().forEach(t => {
+        if (t.vars.trigger === section) t.kill();
+      });
     };
   }, []);
 
@@ -126,7 +117,7 @@ const CardStack = () => {
                   <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
                     {card.title}
                   </h3>
-                  <p className="font-body text-sm text-white/80">
+                  <p className="font-display text-lg md:text-xl text-white/90 leading-relaxed italic">
                     {card.description}
                   </p>
                 </div>

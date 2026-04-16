@@ -144,7 +144,7 @@ const NarrativeText = () => {
 
           <p
             ref={line3Ref}
-            className="font-body text-sm md:text-base text-foreground/60 max-w-lg mx-auto leading-relaxed tracking-wide"
+            className="font-display text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed italic"
             style={{ willChange: 'transform, opacity' }}
           >
             {narrativeTextConfig.line3}

@@ -207,9 +207,9 @@
 
 /* Desktop sticky navbar glass effect */
 .navbar-glass {
-  background: rgba(234, 228, 217, 0.65);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  background: rgba(234, 228, 217, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(234, 228, 217, 0.35);
   box-shadow:
     0 4px 30px rgba(0, 0, 0, 0.04),

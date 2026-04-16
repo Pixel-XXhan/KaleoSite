@@ -1,4 +1,5 @@
 import Hero from '../sections/Hero';
+import SplineSection from '../sections/SplineSection';
 import NarrativeText from '../sections/NarrativeText';
 import CardStack from '../sections/CardStack';
 import BreathSection from '../sections/BreathSection';
@@ -9,6 +10,9 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <Hero />
+
+      {/* 3D Spline Scene Section */}
+      <SplineSection />
 
       {/* Narrative Text Section */}
       <NarrativeText />

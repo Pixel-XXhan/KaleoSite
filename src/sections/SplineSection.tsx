@@ -1,0 +1,95 @@
+import { useRef, useEffect } from "react";
+import { SplineScene } from "@/components/ui/spline";
+import { Spotlight } from "@/components/ui/spotlight";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function SplineSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    
+    if (el) {
+      // Text reveal animation when scrolling into the section
+      gsap.fromTo(
+        ".reveal-text",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.3,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 60%", // Triggers nicely when entering view
+          }
+        }
+      );
+    }
+    
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.vars.trigger === el) trigger.kill();
+      });
+    };
+  }, []);
+
+  return (
+    <section 
+      ref={containerRef} 
+      className="relative w-full h-[120svh] bg-transparent overflow-hidden flex items-center justify-center select-none"
+    >
+      {/* Spotlight Ambient Overlay */}
+      <Spotlight
+        className="-top-20 left-1/2 -translate-x-1/2 opacity-70"
+        fill="var(--kaleo-cream)" 
+      />
+
+      {/* Floating elegant typography on Left and Right (Text Reveal) */}
+      <div className="absolute inset-0 max-w-[1400px] mx-auto p-8 sm:px-12 md:px-16 w-full z-20 pointer-events-none flex gap-8 flex-col md:flex-row justify-between items-start md:items-center">
+        
+        {/* Top-Left / Center-Left Text */}
+        <div className="reveal-text mt-32 md:mt-0 w-3/4 md:w-1/4 text-left">
+          <span className="text-xs md:text-sm uppercase tracking-[0.2em] font-medium text-kaleo-terracotta drop-shadow-sm">
+            Arsitektur
+          </span>
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl font-display mt-2 leading-[0.9] text-foreground tracking-tight drop-shadow-sm">
+            Dinamika <br />
+            <span className="italic text-foreground/80">Struktural.</span>
+          </h3>
+        </div>
+
+        {/* Bottom-Right / Center-Right Text */}
+        <div className="reveal-text mt-auto mb-32 md:mt-0 md:mb-0 w-3/4 md:w-1/4 self-end text-right">
+          <span className="text-xs md:text-sm uppercase tracking-[0.2em] font-medium text-kaleo-terracotta drop-shadow-sm">
+            Presisi
+          </span>
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl font-display mt-2 leading-[0.9] text-foreground tracking-tight drop-shadow-sm">
+            Kendali <br />
+            <span className="italic text-foreground/80">Otonom.</span>
+          </h3>
+        </div>
+        
+      </div>
+
+      {/* 
+        Giant Full-Bleed Spline Layer 
+        Optimized: CSS Scaling removed to reduce GPU compositing overhead
+      */}
+      <div className="absolute inset-0 w-full h-full z-0 cursor-grab active:cursor-grabbing flex items-center justify-center pt-10 pb-10 md:py-0">
+        <SplineScene 
+          scene="https://prod.spline.design/U93cGcW5TMDkpK4z/scene.splinecode"
+          className="w-full h-full origin-center"
+        />
+      </div>
+
+      {/* Seamless Top & Bottom Gradients for smooth transition */}
+      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+    </section>
+  );
+}

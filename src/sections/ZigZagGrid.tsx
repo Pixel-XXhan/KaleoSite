@@ -47,21 +47,22 @@ const GridItem = ({
     });
     triggers.push(textTrigger);
 
-    // Internal parallax on image
-    const imageTrigger = ScrollTrigger.create({
-      trigger: imageContainer,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => {
-        const yPercent = (self.progress - 0.5) * 20;
-        gsap.set(image, { yPercent });
-      },
+    // Internal parallax on image (optimized)
+    gsap.to(image, {
+      yPercent: 10,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: imageContainer,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      }
     });
-    triggers.push(imageTrigger);
 
     return () => {
-      triggers.forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach(t => {
+        if (t.vars.trigger === imageContainer || t.vars.trigger === text) t.kill();
+      });
     };
   }, []);
 
@@ -104,7 +105,7 @@ const GridItem = ({
         <h3 className="font-display text-headline text-kaleo-earth mt-3">
           {item.title}
         </h3>
-        <p className="font-body text-sm md:text-base text-kaleo-earth/70 leading-relaxed mt-6">
+        <p className="font-display text-xl md:text-2xl text-kaleo-earth/80 leading-relaxed mt-6 italic">
           {item.description}
         </p>
 
