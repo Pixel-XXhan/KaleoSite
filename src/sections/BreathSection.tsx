@@ -10,7 +10,7 @@ const BreathSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const triggerRef = useRef<ScrollTrigger | null>(null);
+
 
   useEffect(() => {
     let ctx = gsap.context(() => {
