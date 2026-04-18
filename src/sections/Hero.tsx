@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { heroConfig } from '../config';
@@ -11,6 +11,12 @@ const Hero = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [isFirstVisit] = useState(() => {
+    // Only show the big entrance animation on first page load ever
+    if (sessionStorage.getItem('arisa-hero-seen')) return false;
+    sessionStorage.setItem('arisa-hero-seen', 'true');
+    return true;
+  });
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -21,59 +27,83 @@ const Hero = () => {
 
     if (!section || !title || !subtitle || !image || !overlay) return;
 
-    // Initial animation on load
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 768;
 
-    tl.fromTo(
-      image,
-      { scale: 1.2, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 2 }
-    )
-    .fromTo(
-      title,
-      { scale: 1.1, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1.5 },
-      '-=1.5'
-    )
-    .fromTo(
-      subtitle,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 },
-      '-=0.8'
-    );
+      // ─── Entrance Animation ───
+      // Only play the big cinematic entrance on very first page load.
+      // On route changes back to Home, elements are already visible
+      // and the Framer Motion page fade handles the transition.
+      if (isFirstVisit) {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-    // Scroll-driven parallax using standard GSAP scrollTrigger (more efficient)
-    const tlParallax = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
+        tl.fromTo(
+          image,
+          { scale: 1.15, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 2 }
+        )
+        .fromTo(
+          title,
+          { scale: 1.05, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 1.5 },
+          '-=1.5'
+        )
+        .fromTo(
+          subtitle,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1 },
+          '-=0.8'
+        );
       }
-    });
 
-    tlParallax.to(image, { y: 150, ease: 'none' }, 0);
-    tlParallax.to(overlay, { opacity: 0.3, ease: 'none' }, 0);
-    
-    gsap.to([title, subtitle], {
-      opacity: 0,
-      y: -50,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: '50% top',
-        scrub: true,
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => {
-        if (t.vars.trigger === section) t.kill();
+      // ─── Scroll-Driven Parallax (always active) ───
+      // Image parallax: moves down as you scroll
+      gsap.to(image, {
+        y: isMobile ? 60 : 150,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
       });
-      tl.kill();
-    };
-  }, []);
+
+      // Overlay darkens as you scroll
+      gsap.to(overlay, {
+        opacity: 0.3,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+
+      // ─── Text Fade on Scroll (BIDIRECTIONAL) ───
+      // CRITICAL: Using `fromTo` ensures the animation is fully reversible.
+      // Without explicit "from" values, GSAP can't reverse back to the original state
+      // when scrubbing backwards (scrolling up), causing text to permanently disappear.
+      gsap.fromTo(
+        [title, subtitle],
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          y: -50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: '50% top',
+            scrub: true,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, [isFirstVisit]);
 
   if (!heroConfig.title && !heroConfig.backgroundImage) return null;
 
@@ -82,16 +112,16 @@ const Hero = () => {
       ref={sectionRef}
       className="relative h-[100svh] w-full overflow-hidden"
     >
-      {/* Background Image with Ken Burns */}
+      {/* Background Image */}
       <div
         ref={imageRef}
         className="absolute inset-0 w-full h-full"
-        style={{ willChange: 'transform' }}
       >
         <img
           src={heroConfig.backgroundImage}
           alt={heroConfig.backgroundAlt}
-          className="w-full h-full object-cover ken-burns"
+          className="w-full h-full object-cover md:ken-burns"
+          loading="eager"
         />
       </div>
 
@@ -99,7 +129,6 @@ const Hero = () => {
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-kaleo-charcoal opacity-0"
-        style={{ willChange: 'opacity' }}
       />
 
       {/* Subtle fog effect overlay */}
@@ -113,7 +142,6 @@ const Hero = () => {
           className="font-display text-kaleo-cream text-display tracking-tight select-none"
           style={{
             textShadow: '0 4px 30px rgba(0,0,0,0.3)',
-            willChange: 'transform, opacity'
           }}
         >
           {heroConfig.title}
@@ -123,7 +151,6 @@ const Hero = () => {
         <p
           ref={subtitleRef}
           className="font-body text-kaleo-cream/90 text-sm md:text-base uppercase tracking-[0.3em] mt-6"
-          style={{ willChange: 'transform, opacity' }}
         >
           {heroConfig.subtitle}
         </p>

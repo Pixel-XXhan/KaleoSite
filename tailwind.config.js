@@ -50,6 +50,7 @@ module.exports = {
       fontFamily: {
         display: ['Cormorant Garamond', 'serif'],
         body: ['Inter', 'sans-serif'],
+        prose: ['Playfair Display', 'serif'],
       },
       fontSize: {
         'display': ['clamp(4rem, 15vw, 12rem)', { lineHeight: '0.85', letterSpacing: '-0.02em' }],

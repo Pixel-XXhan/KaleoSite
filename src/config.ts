@@ -23,7 +23,7 @@ export const heroConfig: HeroConfig = {
   backgroundImage: "/hero-bg.jpg",
   backgroundAlt: "Pemandangan sawah saat jam keemasan dengan atmosfer yang menenangkan",
   title: "ARISA",
-  subtitle: "KECERDASAN AGRONOMI PRESISI",
+  subtitle: "PRECISION AGRONOMY INTELLIGENCE",
 };
 
 // Narrative Text Section
@@ -36,7 +36,7 @@ export interface NarrativeTextConfig {
 export const narrativeTextConfig: NarrativeTextConfig = {
   line1: "Menjaga harmoni alam dan teknologi,",
   line2: "demi ketahanan pangan masa depan.",
-  line3: "KOMPUTASI TEPI. DETEKSI PRESISI. KEBERLANJUTAN AGRONOMI.",
+  line3: "EDGE COMPUTING. PRECISION DETECTION. SUSTAINABLE AGRONOMY.",
 };
 
 // ZigZag Grid Section
@@ -57,7 +57,7 @@ export interface ZigZagGridConfig {
 }
 
 export const zigZagGridConfig: ZigZagGridConfig = {
-  sectionLabel: "LANDASAN INOVASI",
+  sectionLabel: "INNOVATION PILLARS",
   sectionTitle: "Simbiosis Alam dan Kecerdasan",
   items: [
     {
@@ -81,7 +81,7 @@ export const zigZagGridConfig: ZigZagGridConfig = {
     {
       id: "risiko",
       title: "Skala Risiko Agronomi",
-      subtitle: "INTEGRASI ILMU",
+      subtitle: "SCIENTIFIC INTEGRATION",
       description: "ARISA tidak hanya melihat, namun juga menerjemahkan. Mengolah temuan visual menjadi Disease Severity Index dan menghadirkan interpretasi metrik risiko yang holistik dan tervalidasi secara akademis.",
       image: "/grid-3.jpg",
       imageAlt: "Instrumen ilmiah bersanding dengan tanaman botani",
@@ -90,7 +90,7 @@ export const zigZagGridConfig: ZigZagGridConfig = {
     {
       id: "aksesibilitas",
       title: "Aksesibilitas Harmonis",
-      subtitle: "TEKNOLOGI INKLUSIF",
+      subtitle: "INCLUSIVE TECHNOLOGY",
       description: "Komunikasi data yang mulus melalui antarmuka canggih dirancang sedemikian rupa agar selaras dengan keseharian petani. Interaksi tanpa batas antara manusia, mesin, dan alam demi ekosistem agrikultur cerdas.",
       image: "/grid-4.jpg",
       imageAlt: "Lanskap sawah membentang luas di bawah sinar mentari",
@@ -112,7 +112,7 @@ export const breathSectionConfig: BreathSectionConfig = {
   backgroundImage: "/breath-bg.jpg",
   backgroundAlt: "Panorama pegunungan dan persawahan yang megah dan damai",
   title: "Harmoni",
-  subtitle: "ALAM & TEKNOLOGI",
+  subtitle: "NATURE & TECHNOLOGY",
   description: "Di setiap hembusan angin yang menyapa rumpun padi, ada kehidupan yang patut dijaga. Karya kami adalah bentuk penghormatan pada dedikasi petani, sebuah sinergi merawat asa ketahanan pangan di tanah Nusantara.",
 };
 
@@ -133,7 +133,7 @@ export interface CardStackConfig {
 
 export const cardStackConfig: CardStackConfig = {
   sectionTitle: "Esensi Sistem",
-  sectionSubtitle: "DIRANCANG UNTUK MASA DEPAN",
+  sectionSubtitle: "ENGINEERED FOR THE FUTURE",
   cards: [
     {
       id: 1,
@@ -184,6 +184,8 @@ export interface FooterConfig {
   logoText: string;
   copyright: string;
   links: { label: string; href: string }[];
+  schoolName: string;
+  tagline: string;
 }
 
 export const footerConfig: FooterConfig = {
@@ -193,20 +195,20 @@ export const footerConfig: FooterConfig = {
   contact: [
     {
       type: "email",
-      label: "research@arisa.ai",
-      value: "research@arisa.ai",
-      href: "mailto:research@arisa.ai",
+      label: "arisaproject@gmail.com",
+      value: "arisaproject@gmail.com",
+      href: "mailto:arisaproject@gmail.com",
     },
     {
       type: "phone",
-      label: "SMK Marhas Margahayu",
-      value: "",
-      href: "#",
+      label: "+62-881-4554-581",
+      value: "+62-881-4554-581",
+      href: "tel:+628814554581",
     },
   ],
-  locationLabel: "Lokasi Penelitian",
-  address: ["Tim Fisika Terapan & Rekayasa", "Kabupaten Bandung, Jawa Barat 2026"],
-  socialLabel: "Ikuti Kami",
+  locationLabel: "Research Base",
+  address: ["SMK Marhas Margahayu", "Kabupaten Bandung, Jawa Barat"],
+  socialLabel: "Follow Us",
   socials: [
     {
       platform: "instagram",
@@ -218,10 +220,12 @@ export const footerConfig: FooterConfig = {
     },
   ],
   logoText: "ARISA",
-  copyright: "2026 Arief Fajar & Reza Arrofi. Hak Cipta Dilindungi.",
+  copyright: "© 2026 ARISA — SMK Marhas Margahayu. All rights reserved.",
   links: [
-    { label: "Basis Penelitian", href: "/research" },
-    { label: "Dokumentasi OPSI", href: "/docs" },
+    { label: "Research Base", href: "/story" },
+    { label: "Methodology", href: "/craft" },
+    { label: "Contact", href: "/contact" },
   ],
+  schoolName: "SMK Marhas Margahayu",
+  tagline: "Precision Agronomy Intelligence",
 };
-

@@ -107,6 +107,7 @@ const CardStack = () => {
                     src={card.image}
                     alt={card.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   {/* Image Overlay always dark to ensure white text is readable */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -117,7 +118,7 @@ const CardStack = () => {
                   <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
                     {card.title}
                   </h3>
-                  <p className="font-display text-lg md:text-xl text-white/90 leading-relaxed italic">
+                  <p className="font-prose text-base md:text-lg text-white/90 leading-[1.85] italic">
                     {card.description}
                   </p>
                 </div>

@@ -86,8 +86,8 @@ const GridItem = ({
             src={item.image}
             alt={item.imageAlt}
             className="w-full h-[120%] object-cover"
+            loading="lazy"
             style={{
-              willChange: 'transform',
               transform: 'scale(1.1)',
             }}
           />
@@ -105,7 +105,7 @@ const GridItem = ({
         <h3 className="font-display text-headline text-kaleo-earth mt-3">
           {item.title}
         </h3>
-        <p className="font-display text-xl md:text-2xl text-kaleo-earth/80 leading-relaxed mt-6 italic">
+        <p className="font-prose text-lg md:text-xl text-kaleo-earth/80 leading-[1.85] mt-6 italic">
           {item.description}
         </p>
 

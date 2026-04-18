@@ -119,7 +119,6 @@ const NarrativeText = () => {
         <div
           ref={starRef}
           className="flex justify-center mb-16"
-          style={{ willChange: 'transform, opacity' }}
         >
           <StarIcon className="w-6 h-6 md:w-8 md:h-8 text-kaleo-terracotta spin-slow" />
         </div>
@@ -129,7 +128,6 @@ const NarrativeText = () => {
           <p
             ref={line1Ref}
             className="font-display text-headline text-foreground"
-            style={{ willChange: 'transform, opacity' }}
           >
             {narrativeTextConfig.line1}
           </p>
@@ -137,15 +135,13 @@ const NarrativeText = () => {
           <p
             ref={line2Ref}
             className="font-display text-subheadline text-foreground/80 italic max-w-2xl mx-auto"
-            style={{ willChange: 'transform, opacity' }}
           >
             {narrativeTextConfig.line2}
           </p>
 
           <p
             ref={line3Ref}
-            className="font-display text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed italic"
-            style={{ willChange: 'transform, opacity' }}
+            className="font-body text-sm md:text-base text-foreground/60 max-w-2xl mx-auto leading-relaxed uppercase tracking-[0.15em]"
           >
             {narrativeTextConfig.line3}
           </p>

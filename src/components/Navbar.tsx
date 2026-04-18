@@ -10,10 +10,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: 'Beranda', href: '/' },
-  { label: 'Riset', href: '/story' },
-  { label: 'Metode', href: '/craft' },
-  { label: 'Eksperimen', href: '/journey' },
+  { label: 'Home', href: '/' },
+  { label: 'Research', href: '/story' },
+  { label: 'Method', href: '/craft' },
+  { label: 'Field Test', href: '/journey' },
 ];
 
 const Navbar = () => {
@@ -55,10 +55,6 @@ const Navbar = () => {
   }, [location.pathname]);
 
   // Determine colors based on state
-  // Unscrolled on homepage -> blends entirely with cover image (requires white text)
-  // Scrolled or Not on homepage -> dynamic theme colors inside a floating pill
-  // Scrolled or Not on homepage -> dynamic theme colors inside a floating pill
-  
   const textColorClass = 'text-foreground';
   const hoverColorClass = 'hover:text-foreground/80';
 
@@ -160,7 +156,7 @@ const Navbar = () => {
               to="/contact"
               className="px-6 py-2.5 rounded-full font-body text-[0.7rem] uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-lg hover:-translate-y-0.5 border border-primary/20 text-foreground hover:bg-primary hover:text-primary-foreground"
             >
-              Hubungi Kami
+              Get in Touch
             </Link>
           </div>
 
@@ -250,7 +246,7 @@ const Navbar = () => {
                   className="px-8 py-3 rounded-full border border-primary/20 font-body text-[0.8rem] uppercase tracking-[0.2em] text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Mulai Kolaborasi
+                  Start Collaborating
                 </Link>
               </motion.div>
             </div>

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
+import ZoomShowcase from '../sections/ZoomShowcase';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,7 +138,7 @@ const Craft = () => {
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="font-body text-foreground/70 max-w-xl mx-auto text-base md:text-xl leading-relaxed"
+          className="font-prose text-foreground/70 max-w-xl mx-auto text-base md:text-lg leading-[1.85] italic"
         >
           Sebuah dedikasi pada presisi ilmiah. ARISA meramu rekayasa komputasi mutakhir dengan pendekatan agronomis yang sangat dihormati.
         </motion.p>
@@ -159,7 +160,7 @@ const Craft = () => {
                   0{i + 1} // Medium
                 </span>
                 <h2 className="font-display text-4xl md:text-7xl mb-4 md:mb-6 tracking-tighter">{craft.title}</h2>
-                <p className="font-body opacity-80 text-sm md:text-lg max-w-md leading-relaxed">
+                <p className="font-prose opacity-80 text-sm md:text-base max-w-md leading-[1.85] italic">
                   {craft.desc}
                 </p>
               </div>
@@ -169,6 +170,7 @@ const Craft = () => {
                   src={craft.img} 
                   alt={craft.title}
                   className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -183,24 +185,24 @@ const Craft = () => {
             <div className="space-y-10 md:space-y-16 order-2 lg:order-1">
               <div className="space-y-4 md:space-y-6">
                 <h2 className="font-display text-5xl md:text-8xl tracking-tighter">Esensi <br/> Data.</h2>
-                <p className="font-body text-base md:text-xl text-foreground/70 leading-relaxed md:leading-loose">
+                <p className="font-prose text-base md:text-lg text-foreground/70 leading-[1.85] italic">
                   Dataset kami dibangun perlahan, divalidasi lapis demi lapis bersama Balai Penyuluhan Pertanian setempat untuk melacak rekam jejak agronomi yang otentik.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 <div>
                   <h4 className="font-display text-xl md:text-2xl mb-2">Anotasi Piksel</h4>
-                  <p className="font-body text-xs md:text-sm text-foreground/60">Tiap citra daun diisolasi menggunakan perangkat lunak presisi agar lesi tak luput terhitung.</p>
+                  <p className="font-prose text-xs md:text-sm text-foreground/60 italic">Tiap citra daun diisolasi menggunakan perangkat lunak presisi agar lesi tak luput terhitung.</p>
                 </div>
                 <div>
                   <h4 className="font-display text-xl md:text-2xl mb-2">Optimasi Edge</h4>
-                  <p className="font-body text-xs md:text-sm text-foreground/60">Model dilatih kemudian diformulasikan ke kuantisasi terendah agar irit daya, namun tetap presisi.</p>
+                  <p className="font-prose text-xs md:text-sm text-foreground/60 italic">Model dilatih kemudian diformulasikan ke kuantisasi terendah agar irit daya, namun tetap presisi.</p>
                 </div>
               </div>
             </div>
             <div className="relative order-1 lg:order-2 w-full max-w-md lg:max-w-none mx-auto">
               <div className="aspect-square rounded-[40px] md:rounded-[100px] overflow-hidden rotate-3 shadow-2xl">
-                <img src="/breath-bg.jpg" alt="Texture" className="w-full h-full object-cover scale-125" />
+                <img src="/breath-bg.jpg" alt="Texture" className="w-full h-full object-cover scale-125" loading="lazy" />
               </div>
             </div>
           </div>
@@ -219,26 +221,29 @@ const Craft = () => {
             ].map((step, i) => (
               <div key={i}>
                 <span className="text-primary font-display text-2xl md:text-4xl mb-4 md:mb-8 block italic">0{i+1}. {step.t}</span>
-                <p className="font-body text-background/70 text-sm md:text-base leading-relaxed">{step.d}</p>
+                <p className="font-prose text-background/70 text-sm md:text-base leading-relaxed italic">{step.d}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Scroll-Driven Zoom Scale Showcase - Process Pipeline */}
+      <ZoomShowcase />
       
       {/* Gallery */}
       <section ref={galleryRef} className="py-20 md:py-48 bg-background relative z-30">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 md:mb-32">
             <h2 className="font-display text-4xl md:text-7xl tracking-tighter mb-4">Presisi dalam <br className="md:hidden"/> Kesederhanaan.</h2>
-            <p className="font-body text-sm md:text-xl text-foreground/70 max-w-xl">Dari kerumitan matematika jaringan saraf menjadi sekian baris instruksi arif bagi sang petani.</p>
+            <p className="font-prose text-sm md:text-lg text-foreground/70 max-w-xl italic">Dari kerumitan matematika jaringan saraf menjadi sekian baris instruksi arif bagi sang petani.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
             <div className="gallery-item aspect-[4/5] rounded-tl-[40px] md:rounded-tl-[100px] overflow-hidden">
-              <img src="/grid-1.jpg" className="w-full h-full object-cover" alt="Craft 1" />
+              <img src="/grid-1.jpg" className="w-full h-full object-cover" alt="Craft 1" loading="lazy" />
             </div>
             <div className="gallery-item aspect-[3/4] md:mt-32 rounded-br-[40px] md:rounded-br-[100px] overflow-hidden">
-              <img src="/grid-2.jpg" className="w-full h-full object-cover" alt="Craft 2" />
+              <img src="/grid-2.jpg" className="w-full h-full object-cover" alt="Craft 2" loading="lazy" />
             </div>
           </div>
         </div>

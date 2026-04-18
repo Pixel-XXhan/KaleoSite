@@ -11,9 +11,8 @@ const BreathSection = () => {
   const textRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
-
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const section = sectionRef.current;
       const container = containerRef.current;
       const text = textRef.current;
@@ -52,7 +51,7 @@ const BreathSection = () => {
         opacity: 1,
         y: 0,
         ease: 'none'
-      }, 0.4); // Start this animation when others are 40% through
+      }, 0.4);
 
       return () => {
         ScrollTrigger.getAll().forEach(t => {
@@ -75,7 +74,6 @@ const BreathSection = () => {
         <div
           ref={containerRef}
           className="relative w-full max-w-7xl mx-auto overflow-hidden shadow-2xl"
-          style={{ willChange: 'transform, border-radius' }}
         >
           {/* Background Image */}
           <div className="relative aspect-[16/9] md:aspect-[21/9]">
@@ -83,6 +81,7 @@ const BreathSection = () => {
               src={breathSectionConfig.backgroundImage}
               alt={breathSectionConfig.backgroundAlt}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
 
             {/* Solid fixed overlay to guarantee text contrast regardless of theme */}
@@ -94,7 +93,6 @@ const BreathSection = () => {
                 ref={textRef}
                 className="font-display text-4xl md:text-7xl lg:text-[7rem] text-white tracking-tight"
                 style={{
-                  willChange: 'transform, opacity',
                   textShadow: '0 4px 30px rgba(0,0,0,0.5)'
                 }}
               >
@@ -103,7 +101,6 @@ const BreathSection = () => {
               <p
                 ref={subtitleRef}
                 className="font-body text-white/80 text-xs md:text-sm uppercase tracking-[0.3em] md:tracking-[0.5em] mt-6 drop-shadow-md"
-                style={{ willChange: 'transform, opacity' }}
               >
                 {breathSectionConfig.subtitle}
               </p>
@@ -119,7 +116,7 @@ const BreathSection = () => {
       {/* Decorative elements */}
       {breathSectionConfig.description && (
         <div className="max-w-4xl mx-auto px-6 md:px-8 mt-24 md:mt-32 text-center">
-          <p className="font-display text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed italic">
+          <p className="font-prose text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-[1.85] italic">
             {breathSectionConfig.description}
           </p>
         </div>

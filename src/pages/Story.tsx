@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
+import ParallaxDepthField from '../sections/VerticalCarousel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,6 +140,7 @@ const Story = () => {
             src="/hero-bg.jpg" 
             alt="Artisan workspace" 
             className="w-full h-full object-cover filter brightness-[0.6]"
+            loading="eager"
           />
         </div>
         
@@ -169,7 +171,7 @@ const Story = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 md:mb-24 text-left md:text-center">
             <h2 className="font-display text-4xl md:text-7xl mb-6">Fondasi Inovasi</h2>
-            <p className="font-body text-background/60 max-w-xl md:mx-auto">Pilar nilai fundamental yang menjadi landasan sistem ARISA.</p>
+            <p className="font-prose text-background/60 max-w-xl md:mx-auto italic">Pilar nilai fundamental yang menjadi landasan sistem ARISA.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
@@ -180,12 +182,15 @@ const Story = () => {
               <div key={i} className="value-card p-8 md:p-12 border border-background/10 rounded-2xl">
                 <span className="text-primary font-display text-3xl md:text-4xl mb-6 block italic">0{i+1}</span>
                 <h3 className="font-display text-2xl md:text-3xl mb-4">{item.title}</h3>
-                <p className="font-body text-background/70 leading-relaxed text-sm md:text-base">{item.desc}</p>
+                <p className="font-prose text-background/70 leading-relaxed text-sm md:text-base italic">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Scroll-Driven Parallax Depth Field - Research Insights */}
+      <ParallaxDepthField />
 
       {/* Image Shrink Section - RE-CENTERED FOR MOBILE */}
       <section 
@@ -225,12 +230,12 @@ const Story = () => {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
           <div className="w-full lg:w-1/2">
             <div className="relative aspect-[4/5] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-              <img src="/card-1.jpg" alt="Studio" className="w-full h-full object-cover" />
+              <img src="/card-1.jpg" alt="Studio" className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
           <div className="w-full lg:w-1/2 space-y-8 md:space-y-12">
             <h2 className="font-display text-4xl md:text-7xl tracking-tighter">Kecerdasan <br/> Di Lahan Petani.</h2>
-            <p className="font-body text-base md:text-lg text-foreground/70 leading-relaxed md:leading-loose">
+            <p className="font-prose text-base md:text-lg text-foreground/70 leading-[1.85] italic">
               Penelitian ini lahir dari sawah dan berbakti untuk sawah masa depan. Memanfaatkan pemrosesan Edge-AI untuk menghapus dinding birokrasi informasi antara ahli botani dan para pahlawan pangan nasional, karena keputusan darurat tidak boleh menunggu koneksi.
             </p>
             <div className="flex gap-8 md:gap-12 border-t border-foreground/10 pt-8 md:pt-12">
@@ -266,7 +271,7 @@ const Story = () => {
                   <h3 className="font-display text-2xl md:text-3xl mt-1 md:mt-2">{item.title}</h3>
                 </div>
                 <div className={`mt-2 md:mt-0 md:w-[45%] ${item.pos === 'left' ? 'md:pl-16' : 'md:order-1 md:text-right md:pr-16'}`}>
-                  <p className="font-body text-background/80 leading-relaxed text-sm">{item.desc}</p>
+                  <p className="font-prose text-background/80 leading-relaxed text-sm italic">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -277,7 +282,7 @@ const Story = () => {
       {/* Founders Letter */}
       <section className="py-24 md:py-48 px-6 bg-background relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-8">
-          <h2 className="font-display text-2xl md:text-4xl leading-tight text-foreground/80 italic">
+          <h2 className="font-prose text-xl md:text-3xl leading-[1.7] text-foreground/80 italic">
             "Menyatukan kecerdasan mesin mutakhir dengan nurani ekologis, demi ketahanan pertanian untuk ibu pertiwi."
           </h2>
           <div className="w-12 md:w-16 h-px bg-foreground/20 mx-auto" />

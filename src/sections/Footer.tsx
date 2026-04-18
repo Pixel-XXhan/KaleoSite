@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, ArrowUpRight, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight, Instagram, Github, ExternalLink } from 'lucide-react';
 import { footerConfig } from '../config';
 
 // Magnetic Button Component
 const MagneticButton = ({
   children,
   className,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -20,6 +23,7 @@ const MagneticButton = ({
       className={className}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <span className={`relative z-10 transition-colors duration-300 ${isHovered ? 'text-zinc-950' : ''}`}>
         {children}
@@ -35,50 +39,54 @@ const MagneticButton = ({
 
 const iconMap: Record<string, typeof Instagram> = {
   instagram: Instagram,
-  facebook: Facebook,
+  github: Github,
 };
 
 const Footer = () => {
   if (!footerConfig.heading && !footerConfig.logoText) return null;
 
   return (
-    <footer className="relative w-full bg-background text-foreground overflow-hidden pt-24 border-t border-primary/10 transition-colors duration-700">
-      {/* Background Image (Using a valid asset) */}
-      <div className="absolute inset-0 opacity-[0.03] object-cover pointer-events-none">
-        <img
-          src="/breath-bg.jpg"
-          alt=""
-          className="w-full h-full object-cover filter grayscale"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+    <footer className="relative w-full bg-background text-foreground overflow-hidden transition-colors duration-700">
+      
+      {/* Top decorative gradient line */}
+      <div className="footer-gradient-line h-px w-full" />
+
+      {/* Ambient glow */}
+      <div className="footer-glow absolute inset-0 pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Upper Section */}
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-            {/* Left Column - CTA */}
+
+        {/* ───── Main Section ───── */}
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pt-20 md:pt-28 pb-16 md:pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+
+            {/* Left Column - CTA & Description */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-5"
+              className="lg:col-span-6"
             >
-              <h2 className="font-display text-5xl md:text-6xl text-foreground">
+              <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] text-kaleo-terracotta mb-4 block">
+                {footerConfig.schoolName}
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05]">
                 {footerConfig.heading}
               </h2>
-              <p className="font-body text-sm text-foreground/70 mt-6 max-w-md leading-relaxed">
+              <p className="font-prose text-base md:text-lg text-foreground/60 mt-6 max-w-lg leading-[1.85] italic">
                 {footerConfig.description}
               </p>
               {footerConfig.ctaText && (
-                <MagneticButton className="relative mt-8 px-8 py-4 border border-foreground/30 rounded-full font-body text-sm uppercase tracking-wider overflow-hidden transition-colors hover:border-foreground">
-                  <span className="flex items-center gap-2">
-                    {footerConfig.ctaText}
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
-                </MagneticButton>
+                <Link to="/contact">
+                  <MagneticButton className="relative mt-8 px-8 py-4 border border-foreground/30 rounded-full font-body text-sm uppercase tracking-wider overflow-hidden transition-colors hover:border-foreground">
+                    <span className="flex items-center gap-2">
+                      {footerConfig.ctaText}
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </MagneticButton>
+                </Link>
               )}
             </motion.div>
 
@@ -88,68 +96,99 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-7"
+              className="lg:col-span-6"
             >
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Contact */}
-                {footerConfig.contact.length > 0 && (
-                  <div>
-                    <h4 className="font-body text-xs uppercase tracking-[0.15em] text-foreground/50 mb-4">
-                      Contact
-                    </h4>
-                    <ul className="space-y-3">
-                      {footerConfig.contact.map((item, index) => (
-                        <li key={index}>
-                          <a
-                            href={item.href}
-                            className="font-body text-sm text-foreground/80 hover:text-foreground transition-colors flex items-center gap-2"
-                          >
-                            {item.type === 'email' ? <Mail className="w-4 h-4" /> : <Phone className="w-4 h-4" />}
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Address */}
-                {footerConfig.address.length > 0 && (
-                  <div>
-                    <h4 className="font-body text-xs uppercase tracking-[0.15em] text-foreground/50 mb-4">
-                      {footerConfig.locationLabel}
-                    </h4>
-                    <div className="flex items-start gap-2">
-                      <MapPin className="w-4 h-4 text-foreground/60 mt-0.5 flex-shrink-0" />
-                      <p className="font-body text-sm text-foreground/80 leading-relaxed">
-                        {footerConfig.address.map((line, i) => (
-                          <span key={i}>
-                            {line}
-                            {i < footerConfig.address.length - 1 && <br />}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12">
+                
+                {/* Contact Info */}
+                <div>
+                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                    <span className="w-4 h-px bg-foreground/20" />
+                    Contact
+                  </h4>
+                  <ul className="space-y-4">
+                    {footerConfig.contact.map((item, index) => (
+                      <li key={index}>
+                        <a
+                          href={item.href}
+                          className="group font-body text-sm text-foreground/70 hover:text-foreground transition-all duration-300 flex items-center gap-3"
+                        >
+                          <span className="flex-shrink-0 w-8 h-8 rounded-full border border-foreground/15 flex items-center justify-center group-hover:border-foreground/30 group-hover:bg-foreground/5 transition-all duration-300">
+                            {item.type === 'email' ? <Mail className="w-3.5 h-3.5" /> : <Phone className="w-3.5 h-3.5" />}
                           </span>
-                        ))}
-                      </p>
-                    </div>
+                          <span className="group-hover:translate-x-0.5 transition-transform duration-300">
+                            {item.label}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Location */}
+                <div>
+                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                    <span className="w-4 h-px bg-foreground/20" />
+                    {footerConfig.locationLabel}
+                  </h4>
+                  <div className="flex items-start gap-3">
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full border border-foreground/15 flex items-center justify-center mt-0.5">
+                      <MapPin className="w-3.5 h-3.5 text-foreground/50" />
+                    </span>
+                    <p className="font-body text-sm text-foreground/70 leading-relaxed">
+                      {footerConfig.address.map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          {i < footerConfig.address.length - 1 && <br />}
+                        </span>
+                      ))}
+                    </p>
                   </div>
-                )}
+                </div>
+
+                {/* Quick Links */}
+                <div>
+                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                    <span className="w-4 h-px bg-foreground/20" />
+                    Explore
+                  </h4>
+                  <ul className="space-y-3">
+                    {footerConfig.links.map((link, index) => (
+                      <li key={index}>
+                        <Link
+                          to={link.href}
+                          className="group font-body text-sm text-foreground/70 hover:text-foreground transition-all duration-300 flex items-center gap-2"
+                        >
+                          <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <span className="group-hover:translate-x-0.5 transition-transform duration-300">
+                            {link.label}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 {/* Social */}
                 {footerConfig.socials.length > 0 && (
                   <div>
-                    <h4 className="font-body text-xs uppercase tracking-[0.15em] text-foreground/50 mb-4">
+                    <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                      <span className="w-4 h-px bg-foreground/20" />
                       {footerConfig.socialLabel}
                     </h4>
-                    <div className="flex gap-4">
+                    <div className="flex gap-3">
                       {footerConfig.socials.map((social, index) => {
                         const Icon = iconMap[social.platform.toLowerCase()] || Instagram;
                         return (
                           <a
                             key={index}
                             href={social.href}
-                            className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center hover:border-foreground hover:bg-foreground/5 transition-all"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group w-10 h-10 rounded-full border border-foreground/15 flex items-center justify-center hover:border-foreground/30 hover:bg-foreground/5 transition-all duration-300"
                             aria-label={social.platform}
                           >
-                            <Icon className="w-4 h-4" />
+                            <Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                           </a>
                         );
                       })}
@@ -161,55 +200,34 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Large Logo */}
+        {/* ───── Large Logo Watermark ───── */}
         {footerConfig.logoText && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="border-t border-primary/10 py-12 md:py-16"
-          >
-            <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-              <svg
-                viewBox="0 0 400 80"
-                className="w-full max-w-4xl mx-auto h-auto opacity-10"
-                fill="currentColor"
-              >
-                <text
-                  x="50%"
-                  y="50%"
-                  dominantBaseline="middle"
-                  textAnchor="middle"
-                  className="font-display"
-                  style={{
-                    fontSize: '72px',
-                    fontFamily: 'Cormorant Garamond, serif',
-                    letterSpacing: '0.05em'
-                  }}
-                >
+          <div className="relative overflow-hidden py-8 md:py-12">
+            <div className="footer-gradient-line h-px w-full mb-8 md:mb-12" />
+            <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 flex items-center justify-center">
+              <div className="relative select-none">
+                <span className="font-display text-[20vw] md:text-[14vw] lg:text-[10vw] leading-none tracking-[0.08em] text-foreground/[0.04] block">
                   {footerConfig.logoText}
-                </text>
-              </svg>
+                </span>
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-body text-[0.6rem] md:text-xs uppercase tracking-[0.4em] text-foreground/30 whitespace-nowrap">
+                  {footerConfig.tagline}
+                </span>
+              </div>
             </div>
-          </motion.div>
+          </div>
         )}
 
-        {/* Bottom Bar */}
-        <div className="border-t border-primary/10 py-6">
+        {/* ───── Bottom Bar ───── */}
+        <div className="footer-gradient-line h-px w-full" />
+        <div className="py-6 md:py-8">
           <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="font-body text-xs text-foreground/50">
+            <p className="font-body text-[0.65rem] text-foreground/40 tracking-wide">
               {footerConfig.copyright}
             </p>
-            {footerConfig.links.length > 0 && (
-              <div className="flex gap-6">
-                {footerConfig.links.map((link, index) => (
-                  <a key={index} href={link.href} className="font-body text-xs text-foreground/50 hover:text-foreground transition-colors">
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            )}
+            <div className="flex items-center gap-1.5 text-foreground/30">
+              <span className="font-body text-[0.6rem] tracking-wide">Crafted with precision by</span>
+              <span className="font-display text-sm italic text-foreground/50">Arief & Reza</span>
+            </div>
           </div>
         </div>
       </div>

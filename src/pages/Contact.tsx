@@ -319,7 +319,7 @@ export default function Contact() {
             </span>
           </h1>
           
-          <p className="mt-8 text-lg font-body text-muted-foreground/80 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-8 text-base font-prose text-muted-foreground/80 max-w-xl mx-auto leading-[1.85] italic">
             Hubungi kami untuk mengeksplorasi potensi Agronomi Presisi dan sistem cerdas dalam ekosistem perladangan Anda. Kami menyimak.
           </p>
         </motion.div>
@@ -522,9 +522,9 @@ export default function Contact() {
             </div>
 
             <div className="relative z-20 flex items-center gap-8 text-sm text-foreground/50 font-medium">
-              <a href="/" className="hover:text-primary transition-colors">Beranda</a>
-              <a href="/story" className="hover:text-primary transition-colors">Cerita</a>
-              <a href="/craft" className="hover:text-primary transition-colors">Layanan</a>
+              <a href="/" className="hover:text-primary transition-colors">Home</a>
+              <a href="/story" className="hover:text-primary transition-colors">Research</a>
+              <a href="/craft" className="hover:text-primary transition-colors">Method</a>
             </div>
           </div>
 
