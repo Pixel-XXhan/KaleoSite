@@ -10,21 +10,21 @@ const stages = [
     title: 'Akuisisi Citra',
     description:
       'Kamera presisi tinggi menangkap tekstur daun dalam resolusi mikroskopik. Setiap detail biologis terekam tanpa distorsi.',
-    image: '/grid-1.jpg',
+    image: '/grid-1.webp',
   },
   {
     number: 'II',
     title: 'Segmentasi Cerdas',
     description:
       'Arsitektur U-Net memisahkan wilayah sehat dari lesi patogen. Batas segmentasi presisi hingga tingkat piksel individual.',
-    image: '/grid-2.jpg',
+    image: '/grid-2.webp',
   },
   {
     number: 'III',
     title: 'Klasifikasi Mendalam',
     description:
       'EfficientNet mengidentifikasi jenis dan stadium penyakit. Setiap klasifikasi disertai skor kepercayaan terukur secara ilmiah.',
-    image: '/grid-3.jpg',
+    image: '/grid-3.webp',
   },
 ];
 

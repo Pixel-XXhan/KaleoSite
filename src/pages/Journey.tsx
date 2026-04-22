@@ -85,10 +85,10 @@ const Journey = () => {
   }, []);
 
   const scenes = [
-    { title: "Embun Pagi", d: "Suhu dingin dan bias cahaya pagi menguji sensor kalibrasi model.", img: "/grid-1.jpg" },
-    { title: "Terik Mentari", d: "Adaptasi Edge-AI untuk beroperasi tanpa henti dalam intensitas cuaca panas.", img: "/grid-2.jpg" },
-    { title: "Kanopi Rapat", d: "Identifikasi lesi pada daun padi di bawah rimbunnya jarak tanam rapat jajar legowo.", img: "/grid-3.jpg" },
-    { title: "Mendung Senja", d: "Akurasi segmentasi tetap stabil walaupun intensitas dan spektrum sinar menurun tajam.", img: "/grid-4.jpg" }
+    { title: "Embun Pagi", d: "Suhu dingin dan bias cahaya pagi menguji sensor kalibrasi model.", img: "/grid-1.webp" },
+    { title: "Terik Mentari", d: "Adaptasi Edge-AI untuk beroperasi tanpa henti dalam intensitas cuaca panas.", img: "/grid-2.webp" },
+    { title: "Kanopi Rapat", d: "Identifikasi lesi pada daun padi di bawah rimbunnya jarak tanam rapat jajar legowo.", img: "/grid-3.webp" },
+    { title: "Mendung Senja", d: "Akurasi segmentasi tetap stabil walaupun intensitas dan spektrum sinar menurun tajam.", img: "/grid-4.webp" }
   ];
 
   return (
@@ -121,7 +121,7 @@ const Journey = () => {
             </div>
             <div className="order-1 md:order-2">
                 <div ref={parallaxImgRef} className="relative aspect-[3/4] overflow-hidden rounded-2xl md:rounded-3xl shadow-2xl">
-                    <img src="/breath-bg.jpg" className="absolute inset-x-0 top-0 w-full h-[120%] object-cover" alt="Journey" loading="lazy" />
+                    <img src="/breath-bg.webp" className="absolute inset-x-0 top-0 w-full h-[120%] object-cover" alt="Journey" loading="lazy" />
                 </div>
             </div>
         </div>

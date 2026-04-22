@@ -20,7 +20,7 @@ export interface HeroConfig {
 }
 
 export const heroConfig: HeroConfig = {
-  backgroundImage: "/hero-bg.jpg",
+  backgroundImage: "/hero-bg.webp",
   backgroundAlt: "Pemandangan sawah saat jam keemasan dengan atmosfer yang menenangkan",
   title: "ARISA",
   subtitle: "PRECISION AGRONOMY INTELLIGENCE",
@@ -65,7 +65,7 @@ export const zigZagGridConfig: ZigZagGridConfig = {
       title: "Pemantauan Berkelanjutan",
       subtitle: "EDGE-AI SYSTEM",
       description: "Sistem kami membawa kecerdasan langsung ke lahan pertanian tanpa bergantung pada konektivitas internet. Melalui perangkat komputasi tepi mutakhir, kondisi setiap helai daun padi dipindai dan diproses secara real-time.",
-      image: "/grid-1.jpg",
+      image: "/grid-1.webp",
       imageAlt: "Komputasi tepi Edge-AI dengan nuansa estetis",
       reverse: false,
     },
@@ -74,7 +74,7 @@ export const zigZagGridConfig: ZigZagGridConfig = {
       title: "Analisis Presisi",
       subtitle: "DEEP LEARNING",
       description: "Arsitektur U-Net dan EfficientNet bekerja berdampingan dengan keanggunan algoritmik. Mengidentifikasi jaringan sehat dan membaca gejala biologis sekecil apapun untuk mengantisipasi penurunan hasil panen sebelum memburuk.",
-      image: "/grid-2.jpg",
+      image: "/grid-2.webp",
       imageAlt: "Ilustrasi pemrosesan citra digital pertanian dengan cahaya hangat",
       reverse: true,
     },
@@ -83,7 +83,7 @@ export const zigZagGridConfig: ZigZagGridConfig = {
       title: "Skala Risiko Agronomi",
       subtitle: "SCIENTIFIC INTEGRATION",
       description: "ARISA tidak hanya melihat, namun juga menerjemahkan. Mengolah temuan visual menjadi Disease Severity Index dan menghadirkan interpretasi metrik risiko yang holistik dan tervalidasi secara akademis.",
-      image: "/grid-3.jpg",
+      image: "/grid-3.webp",
       imageAlt: "Instrumen ilmiah bersanding dengan tanaman botani",
       reverse: false,
     },
@@ -92,7 +92,7 @@ export const zigZagGridConfig: ZigZagGridConfig = {
       title: "Aksesibilitas Harmonis",
       subtitle: "INCLUSIVE TECHNOLOGY",
       description: "Komunikasi data yang mulus melalui antarmuka canggih dirancang sedemikian rupa agar selaras dengan keseharian petani. Interaksi tanpa batas antara manusia, mesin, dan alam demi ekosistem agrikultur cerdas.",
-      image: "/grid-4.jpg",
+      image: "/grid-4.webp",
       imageAlt: "Lanskap sawah membentang luas di bawah sinar mentari",
       reverse: true,
     },
@@ -109,7 +109,7 @@ export interface BreathSectionConfig {
 }
 
 export const breathSectionConfig: BreathSectionConfig = {
-  backgroundImage: "/breath-bg.jpg",
+  backgroundImage: "/breath-bg.webp",
   backgroundAlt: "Panorama pegunungan dan persawahan yang megah dan damai",
   title: "Harmoni",
   subtitle: "NATURE & TECHNOLOGY",
@@ -137,21 +137,21 @@ export const cardStackConfig: CardStackConfig = {
   cards: [
     {
       id: 1,
-      image: "/card-1.jpg",
+      image: "/card-1.webp",
       title: "Perangkat Tangguh",
       description: "Dirakit lengkap dengan balutan material antiair yang elegan dan presisi. ARISA senantiasa awas memproses data di hamparan sawah, tidak retak di bawah sinar terik pelita hari.",
       rotation: -2,
     },
     {
       id: 2,
-      image: "/card-2.jpg",
+      image: "/card-2.webp",
       title: "Kecerdasan Mandiri",
       description: "Kami melatih jaringan saraf tiruan mutakhir untuk memahami setiap stadium kehidupan padi. Mengenali corak penyakit dan kondisi agronomis dengan tingkat akurasi yang melampaui visual manusia biasa.",
       rotation: 1,
     },
     {
       id: 3,
-      image: "/card-3.jpg",
+      image: "/card-3.webp",
       title: "Antarmuka Humanis",
       description: "Segala temuan kompleks sistem diformulasikan ke dalam kesederhanaan. Sebuah estetika aplikasi yang menyajikan wawasan bermakna secara instan, menuntun penggunanya pada tindakan yang arif.",
       rotation: -1,

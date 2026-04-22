@@ -27,7 +27,7 @@ const insights = [
       'Menangkap pola visual melampaui spektrum cahaya tampak. Setiap piksel daun dianalisis untuk mendeteksi anomali biologis yang tak kasat mata.',
     stat: '98.2%',
     statLabel: 'Detection Accuracy',
-    image: '/grid-1.jpg',
+    image: '/grid-1.webp',
   },
   {
     number: '02',
@@ -37,7 +37,7 @@ const insights = [
       'Komputasi tepi memproses 30+ frame per detik. Tanpa latensi, tanpa ketergantungan jaringan, tanpa kompromi.',
     stat: '30+',
     statLabel: 'Edge FPS',
-    image: '/grid-2.jpg',
+    image: '/grid-2.webp',
   },
   {
     number: '03',
@@ -47,7 +47,7 @@ const insights = [
       'Melacak pola penyebaran infeksi secara geospasial. Memvisualisasikan klaster risiko dan memprediksi arah propagasi patogen.',
     stat: '1,500+',
     statLabel: 'Validated Samples',
-    image: '/grid-3.jpg',
+    image: '/grid-3.webp',
   },
 ];
 

@@ -137,7 +137,7 @@ const Story = () => {
         <div className="absolute inset-0 w-full h-[120%] -top-[10%]">
           <img 
             ref={parallaxRef}
-            src="/hero-bg.jpg" 
+            src="/hero-bg.webp" 
             alt="Artisan workspace" 
             className="w-full h-full object-cover filter brightness-[0.6]"
             loading="eager"
@@ -203,7 +203,7 @@ const Story = () => {
         >
           <img 
             ref={imageInnerRef}
-            src="/breath-bg.jpg" 
+            src="/breath-bg.webp" 
             className="absolute inset-0 w-full h-full object-cover scale-[1.2] filter brightness-75"
             alt="Process"
           />
@@ -230,7 +230,7 @@ const Story = () => {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
           <div className="w-full lg:w-1/2">
             <div className="relative aspect-[4/5] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-              <img src="/card-1.jpg" alt="Studio" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/card-1.webp" alt="Studio" className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
           <div className="w-full lg:w-1/2 space-y-8 md:space-y-12">

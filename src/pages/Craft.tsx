@@ -27,28 +27,28 @@ const Craft = () => {
     {
       title: 'Perangkat Keras',
       desc: 'Raspberry Pi 4 Model B dirakit dalam casing pelindung yang tahan banting. Pusat komputasi independen di lapangan.',
-      img: '/card-1.jpg',
+      img: '/card-1.webp',
       bgColor: 'bg-background',
       textColor: 'text-foreground'
     },
     {
       title: 'Vision AI',
       desc: 'Kamera mikroskopik menangkap detail terkecil dari lesi daun. Mengartikulasikan dunia biologis ke dalam data biner.',
-      img: '/card-2.jpg',
+      img: '/card-2.webp',
       bgColor: 'bg-foreground',
       textColor: 'text-background' 
     },
     {
       title: 'Algoritma Analitik',
       desc: 'Integrasi arsitektur U-Net dan EfficientNet untuk pengenalan pola yang presisi, diuji langsung di lahan pertanian.',
-      img: '/card-3.jpg',
+      img: '/card-3.webp',
       bgColor: 'bg-background',
       textColor: 'text-foreground'
     },
     {
       title: 'Penerapan Mandiri',
       desc: 'Semua komputasi dilakukan secara lokal menggunakan format TensorFlow Lite. Memastikan latensi rendah tanpa koneksi awan.',
-      img: '/hero-bg.jpg',
+      img: '/hero-bg.webp',
       bgColor: 'bg-foreground',
       textColor: 'text-background'
     }
@@ -202,7 +202,7 @@ const Craft = () => {
             </div>
             <div className="relative order-1 lg:order-2 w-full max-w-md lg:max-w-none mx-auto">
               <div className="aspect-square rounded-[40px] md:rounded-[100px] overflow-hidden rotate-3 shadow-2xl">
-                <img src="/breath-bg.jpg" alt="Texture" className="w-full h-full object-cover scale-125" loading="lazy" />
+                <img src="/breath-bg.webp" alt="Texture" className="w-full h-full object-cover scale-125" loading="lazy" />
               </div>
             </div>
           </div>
@@ -240,10 +240,10 @@ const Craft = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
             <div className="gallery-item aspect-[4/5] rounded-tl-[40px] md:rounded-tl-[100px] overflow-hidden">
-              <img src="/grid-1.jpg" className="w-full h-full object-cover" alt="Craft 1" loading="lazy" />
+              <img src="/grid-1.webp" className="w-full h-full object-cover" alt="Craft 1" loading="lazy" />
             </div>
             <div className="gallery-item aspect-[3/4] md:mt-32 rounded-br-[40px] md:rounded-br-[100px] overflow-hidden">
-              <img src="/grid-2.jpg" className="w-full h-full object-cover" alt="Craft 2" loading="lazy" />
+              <img src="/grid-2.webp" className="w-full h-full object-cover" alt="Craft 2" loading="lazy" />
             </div>
           </div>
         </div>
