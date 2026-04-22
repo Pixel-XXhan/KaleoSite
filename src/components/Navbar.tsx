@@ -91,17 +91,14 @@ const Navbar = () => {
           <div className="flex-1">
             <Link
               to="/"
-              className="group relative flex items-center gap-3 w-max"
+              className="group relative flex items-center gap-2.5 w-max"
             >
-              <div
-                className={`relative flex items-center justify-center transition-all duration-700 ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}
-              >
-                <div className={`absolute inset-0 rounded-full transition-all duration-500 bg-primary/5 group-hover:bg-primary/10`} />
-                <span className={`font-display italic text-lg transition-colors duration-500 ${textColorClass}`}>
-                  A
-                </span>
-              </div>
-              <span className={`font-display tracking-wider text-xl transition-colors duration-500 ${textColorClass}`}>
+              <img
+                src="/assets/logo/logo-icon.webp"
+                alt="ARISA Logo"
+                className={`transition-all duration-700 object-contain ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'} group-hover:scale-105`}
+              />
+              <span className={`font-display tracking-[0.15em] text-xl transition-colors duration-500 ${textColorClass}`}>
                 ARISA
               </span>
             </Link>
@@ -206,9 +203,11 @@ const Navbar = () => {
             className="fixed inset-0 z-[45] flex flex-col items-center justify-center bg-background/95 backdrop-blur-3xl origin-top"
           >
             <div className="flex flex-col items-center gap-6 w-full px-6">
-              <span className="font-display text-foreground text-3xl tracking-wide mb-4">
-                ARISA
-              </span>
+              <img
+                src="/assets/logo/logo-text.webp"
+                alt="ARISA"
+                className="h-12 object-contain mb-4"
+              />
 
               <div className="w-12 h-[1px] bg-primary/20 mb-2" />
 

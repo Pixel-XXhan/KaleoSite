@@ -195,9 +195,9 @@ export const footerConfig: FooterConfig = {
   contact: [
     {
       type: "email",
-      label: "arisaproject@gmail.com",
-      value: "arisaproject@gmail.com",
-      href: "mailto:arisaproject@gmail.com",
+      label: "arisachan2026@gmail.com",
+      value: "arisachan2026@gmail.com",
+      href: "mailto:arisachan2026@gmail.com",
     },
     {
       type: "phone",

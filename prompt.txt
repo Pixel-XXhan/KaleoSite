@@ -1,0 +1,32 @@
+Tugas Anda adalah membangun UI aplikasi Flutter yang mewah, elegan, namun sangat cepat dan ringan (lag-free, target standar 60 - 120 FPS), mengambil inspirasi dari struktur estetika web "KaleoSite" serta fluiditas aplikasi kelas atas seperti Gojek dan Grab.
+
+Berikut adalah panduan komprehensif, namun jadilah AI executor yang FLEKSIBEL. Jangan terpaku kaku pada instruksi ini. Ringkas, adaptasi, dan integrasikan solusi yang paling efisien. Jika Anda merasa ada pendekatan, arsitektur, widget, atau library Flutter yang jauh lebih baik/modern untuk mencapai UX atau performa terbaik, tolong langsung laksanakan!
+
+### 1. Konteks Palet Warna (Organic Luxury)
+Website ini menggunakan palet yang bernuansa hangat dan eksklusif. Terapkan logika Light Mode & Dark Mode ini di dalam `ThemeData` atau sistem warna Anda:
+- **Kaleo Sand** (Base Light): `#EAE4D9` (Light) / `#1C1C1C` (Dark). Gunakan sebagai background dasar utama (`Scaffold`), memberi kesan kertas bertekstur atau ruang premium.
+- **Kaleo Charcoal** (Primary Text): `#1C1C1C` (Light) / `#F3F0EB` (Dark). Gunakan untuk warna teks prioritas tinggi, Headline, dan Body.
+- **Kaleo Cream** (Surface/Card): `#F3F0EB` (Light) / `#141414` (Dark). Sangat cocok untuk latar belakang Card, Modal, atau Bottom Sheet agar sedikit memisahkan diri dari background utama.
+- **Kaleo Earth** (Secondary Element): `#2A2A2A` (Light) / `#3C3C3C` (Dark). Untuk icon non-aktif, border premium, atau teks deksripsi.
+- **Kaleo Terracotta** (Accent): `#8C7B6B`. Ini poin paling krusial! Gunakan untuk tombol interaktif prime, indikator navigasi yang aktif, highlight teks, atau efek "selection". Jangan gunakan warna primary mencolok seperti full blue/red. 
+
+### 2. Animasi & Komponen Flutter (Best Practices)
+Bangun efek motion kelas atas, tetapi harus ter-optimasi:
+- **Fade-in & Scale-in (Muncul perlahan)**: Hindari manual controller (TickedProvider) yang rumit jika hanya untuk animasi masuk. Gunakan implicit animation seperti `AnimatedOpacity` & `AnimatedScale`, atau package ringan seperti `flutter_animate` untuk efek cascade (staggered list) yang smooth layaknya React/Framer Motion.
+- **Glassmorphism (Efek Kaca)**: Navbar website asli menggunakan warna tembus pandang dan blur. Di Flutter, ciptakan kemewahan ini menggunakan `ClipRRect` dipadukan dengan `BackdropFilter` (kemudian beri `ImageFilter.blur`). WARNING: Blur dapat memakan GPU, pastikan tidak tumpang tindih secara berlebihan.
+- **Micro-Interactions (Feedback Visual)**: Implementasikan scale-down kecil saat user menahan tombol (`GestureDetector` wrap pada `AnimatedContainer`). Sentuhan kecil ini (magnetic/scale) membuat interaksi langsung terasa "mahal".
+- **Parallax Header / Scroll**: Gunakan struktur base `CustomScrollView` yang berisi kumpulan `Slivers` (`SliverAppBar`, `SliverList`, dll) untuk mendapatkan fluiditas scroll yang seamless (mirip website lenis smooth-scroll).
+
+### 3. Rekomendasi Library Animasi Open Source (Lottie & Rive)
+Ambillah referensi dari Gojek atau Grab yangUI-nya clean tapi seringkali diselipkan motion grafis yang memukau tanpa mengurangi kecepatan (lag).
+- **LottieFiles (`lottie` package)**: Merupakan standar industri. Rekomendasikan mencari aset animasi open-source dari https://lottiefiles.com/ untuk layar-layar emosional: halaman "Keranjang Kosong", "Error 404", Loading Splashscreen, atau "Success Checklist". Pastikan warna JSON Lottie disesuaikan atau di-"filter" warnanya agar match dengan warna *Terracotta*.
+- **Rive (`rive` package)**: Opsi alternatif jika butuh animasi stateful dan ukurannya sekecil mungkin.
+
+### 4. UI Layout & Aset (Anti-Lag, Performa Terbaik)
+FEELS WAJIB TERASA BAGUS, MEWAH, ELEGAN NAMUN TIDAK LAG. 
+- **Wajib Gunakan SVG**: Gunakan `flutter_svg` untuk me-render semua ikon atau shape abstrak (non-foto ilustrasi). Ini solusi paling efektif agar tak ada gambar pecah, size aplikasi kecil, serta GPU tidak kerepotan. Sama persis seperti praktisi di Gojek.
+- **Typography Mewah**: Padukan dua rasio font. Font Serif `Cormorant Garamond` atau `Playfair Display` untuk Header besar/Display Text. Sedangkan untuk bacaan (Body System), gunakan San-Serif yang bersih seperti `Inter`. Ini memberi feel gaya editorial atau majalah kelas atas.
+- **Skeleton Loading & Caching**: Saat mengambil data dari backend, sediakan efek *Shimmer Loading* ketimbang menggunakan generic CircularProgressIndicator.
+
+### 5. Pesan Untuk AI Executor (Self-Rule)
+Anda adalah arsitek utama sekarang. Gunakan prompt ini sebagai kompas, bukan rantai. Jika ada teknik state management (Riverpod/Bloc/GetX) yang Anda percayai lebih mulus saat disandingkan dengan animasi tertentu, pakailah! Jika struktur yang saya sampaikan bisa dipersingkat tanpa kompromi keindahan UI-nya, ringkaslah! Apapun yang Anda rasa fleksibel dan modern, laksanakan saja. Tujuan utama kita: "Menciptakan Flutter UI app yang estetik, bertema KaleoSite, premium, kaya animasi & SVG OpenSource, dan bebas kompromi soal performa (High FPS)."

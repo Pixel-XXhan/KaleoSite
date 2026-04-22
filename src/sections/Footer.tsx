@@ -200,18 +200,19 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ───── Large Logo Watermark ───── */}
+        {/* ───── Full Brand Display Watermark ───── */}
         {footerConfig.logoText && (
-          <div className="relative overflow-hidden py-8 md:py-12">
-            <div className="footer-gradient-line h-px w-full mb-8 md:mb-12" />
-            <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 flex items-center justify-center">
+          <div className="relative overflow-hidden py-16 md:py-24">
+            <div className="footer-gradient-line h-px w-full mb-10 md:mb-16" />
+            <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 flex flex-col items-center justify-center">
+              {/* Full brand logo: pinwheel | divider | ARISA + tagline */}
               <div className="relative select-none">
-                <span className="font-display text-[20vw] md:text-[14vw] lg:text-[10vw] leading-none tracking-[0.08em] text-foreground/[0.04] block">
-                  {footerConfig.logoText}
-                </span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-body text-[0.6rem] md:text-xs uppercase tracking-[0.4em] text-foreground/30 whitespace-nowrap">
-                  {footerConfig.tagline}
-                </span>
+                <img
+                  src="/assets/logo/logo-full.webp"
+                  alt="ARISA — Agronomic Risk Intelligence System for Agriculture"
+                  className="w-[280px] md:w-[420px] lg:w-[520px] object-contain opacity-40 dark:opacity-25 transition-opacity duration-700"
+                  style={{ filter: 'brightness(0.7) saturate(1.4)' }}
+                />
               </div>
             </div>
           </div>
