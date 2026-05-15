@@ -141,7 +141,7 @@ const NarrativeText = () => {
 
           <p
             ref={line3Ref}
-            className="font-body text-sm md:text-base text-foreground/60 max-w-2xl mx-auto leading-relaxed uppercase tracking-[0.15em]"
+            className="font-body text-sm md:text-base text-foreground/70 max-w-2xl mx-auto leading-relaxed uppercase tracking-[0.15em]"
           >
             {narrativeTextConfig.line3}
           </p>

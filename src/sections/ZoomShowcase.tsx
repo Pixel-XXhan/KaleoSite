@@ -9,22 +9,22 @@ const stages = [
     number: 'I',
     title: 'Akuisisi Citra',
     description:
-      'Kamera presisi tinggi menangkap tekstur daun dalam resolusi mikroskopik. Setiap detail biologis terekam tanpa distorsi.',
-    image: '/grid-1.webp',
+      'Kamera RPi Module v2 menangkap citra daun padi dalam resolusi 8MP. Setiap detail tekstur daun terekam untuk analisis selanjutnya.',
+    image: '/craft-vision.webp',
   },
   {
     number: 'II',
     title: 'Segmentasi Cerdas',
     description:
-      'Arsitektur U-Net memisahkan wilayah sehat dari lesi patogen. Batas segmentasi presisi hingga tingkat piksel individual.',
-    image: '/grid-2.webp',
+      'Model U-Net memisahkan area daun sehat dari area terinfeksi. Batas segmentasi presisi hingga tingkat piksel individual.',
+    image: '/craft-algorithm.webp',
   },
   {
     number: 'III',
-    title: 'Klasifikasi Mendalam',
+    title: 'Klasifikasi & Skor',
     description:
-      'EfficientNet mengidentifikasi jenis dan stadium penyakit. Setiap klasifikasi disertai skor kepercayaan terukur secara ilmiah.',
-    image: '/grid-3.webp',
+      'EfficientNet mengklasifikasi jenis dan stadium penyakit. Setiap hasil disertai Disease Severity Index (DSI) yang terukur.',
+    image: '/craft-hardware.webp',
   },
 ];
 
@@ -105,14 +105,14 @@ const ZoomShowcase = () => {
       >
         {/* Section label */}
         <div className="absolute top-8 left-0 right-0 z-20 text-center">
-          <span className="font-body text-[0.65rem] uppercase tracking-[0.3em] text-foreground/30">
+          <span className="font-body text-[0.65rem] uppercase tracking-[0.3em] text-foreground/70">
             Process Pipeline
           </span>
         </div>
 
         {/* Phase counter */}
         <div className="absolute bottom-8 left-0 right-0 z-20 text-center">
-          <span className="font-body text-[0.55rem] uppercase tracking-[0.4em] text-foreground/20">
+          <span className="font-body text-[0.55rem] uppercase tracking-[0.4em] text-foreground/70">
             Scroll to explore
           </span>
         </div>

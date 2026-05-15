@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
+import StatsCounter from '../sections/StatsCounter';
+import ComparisonTable from '../sections/ComparisonTable';
+import Testimonials from '../sections/Testimonials';
 import ParallaxDepthField from '../sections/VerticalCarousel';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,7 +40,7 @@ const Story = () => {
           start: 'top top',
           end: 'bottom top',
           scrub: true,
-          animation: gsap.to(parallaxRef.current, { y: 150, ease: 'none' }) // Reduced for performance
+          animation: gsap.to(parallaxRef.current, { y: 150, ease: 'none' })
         });
       }
 
@@ -59,7 +62,7 @@ const Story = () => {
         );
       }
 
-      // 3. Massive Image Shrink (Adjusted for Mobile)
+      // 3. Massive Image Shrink
       if (pinSectionRef.current && imageScaleRef.current && imageInnerRef.current && revealedTextRef.current) {
         const isMobile = window.innerWidth < 768;
         
@@ -121,7 +124,7 @@ const Story = () => {
     return () => ctx.revert();
   }, []);
 
-  const storyText = "ARISA dirancang untuk menjembatani kesenjangan antara kearifan agrikultur tradisional dan era Society 5.0. Kami menyatukan para peneliti muda, pakar agronomi, dan teknologi cerdas untuk memastikan ketahanan pangan berkelanjutan demi kehidupan esok hari.";
+  const storyText = "ARISA dirancang untuk menjembatani kesenjangan antara pemantauan pertanian konvensional dan kebutuhan pertanian presisi di era modern. Sistem ini menyatukan pendekatan agronomi lapangan dengan teknologi Edge-AI agar petani dapat mengambil keputusan berbasis data, tanpa bergantung pada koneksi internet.";
 
   return (
     <motion.div 
@@ -137,12 +140,13 @@ const Story = () => {
         <div className="absolute inset-0 w-full h-[120%] -top-[10%]">
           <img 
             ref={parallaxRef}
-            src="/hero-bg.webp" 
-            alt="Artisan workspace" 
-            className="w-full h-full object-cover filter brightness-[0.6]"
+            src="/hero-research.webp" 
+            alt="Daun padi close-up" 
+            className="w-full h-full object-cover"
             loading="eager"
           />
         </div>
+        <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none" />
         
         <div className="relative z-10 text-center px-6">
           <motion.h1 
@@ -166,33 +170,39 @@ const Story = () => {
         </div>
       </section>
 
+      {/* ═══ NEW: Stats Counter Section ═══ */}
+      <StatsCounter />
+
       {/* Philosophy Grid */}
-      <section className="py-24 md:py-32 bg-foreground text-background">
+      <section className="py-24 md:py-32 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 md:mb-24 text-left md:text-center">
-            <h2 className="font-display text-4xl md:text-7xl mb-6">Fondasi Inovasi</h2>
-            <p className="font-prose text-background/60 max-w-xl md:mx-auto italic">Pilar nilai fundamental yang menjadi landasan sistem ARISA.</p>
+            <h2 className="font-display text-4xl md:text-7xl mb-6">Landasan Penelitian</h2>
+            <p className="font-prose text-foreground/70 max-w-xl md:mx-auto italic">Tiga prinsip utama yang mendasari pengembangan sistem ARISA.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
-              { title: "Akurasi", desc: "Data komputasi yang diolah analitik mendalam. Mengubah gejala tersembunyi menjadi pengetahuan valid." },
-              { title: "Kemandirian", desc: "Solusi presisi otonom dan offline tanpa hambatan koneksi internet. Membentengi ekosistem komoditas tanaman padi." },
-              { title: "Dedikasi", desc: "Bukan sekadar sistem komputasi modern, melainkan wujud dedikasi kami untuk membantu tata kelola pertanian." }
+              { title: "Akurasi", desc: "Deteksi penyakit berbasis pengolahan citra dan model deep learning, menghasilkan skor kuantitatif (DSI) yang lebih konsisten dari pengamatan visual manusia." },
+              { title: "Kemandirian", desc: "Seluruh pemrosesan AI berjalan secara lokal di Raspberry Pi tanpa koneksi internet. Dirancang untuk kondisi infrastruktur di pelosok pedesaan." },
+              { title: "Keterjangkauan", desc: "Biaya pembuatan alat di bawah Rp 2,5 juta menggunakan komponen yang tersedia di pasaran lokal. Investasi satu kali untuk manfaat jangka panjang." }
             ].map((item, i) => (
-              <div key={i} className="value-card p-8 md:p-12 border border-background/10 rounded-2xl">
-                <span className="text-primary font-display text-3xl md:text-4xl mb-6 block italic">0{i+1}</span>
+              <div key={i} className="value-card p-8 md:p-12 border border-border bg-foreground/5 rounded-3xl hover:bg-foreground/10 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                <span className="text-kaleo-terracotta font-display text-3xl md:text-4xl mb-6 block italic">0{i+1}</span>
                 <h3 className="font-display text-2xl md:text-3xl mb-4">{item.title}</h3>
-                <p className="font-prose text-background/70 leading-relaxed text-sm md:text-base italic">{item.desc}</p>
+                <p className="font-prose text-foreground/70 leading-relaxed text-sm md:text-base italic">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ═══ NEW: ARISA vs Manual Comparison ═══ */}
+      <ComparisonTable />
+
       {/* Scroll-Driven Parallax Depth Field - Research Insights */}
       <ParallaxDepthField />
 
-      {/* Image Shrink Section - RE-CENTERED FOR MOBILE */}
+      {/* Image Shrink Section */}
       <section 
         ref={pinSectionRef} 
         className="relative w-full h-screen flex items-center justify-center bg-background overflow-hidden"
@@ -203,13 +213,13 @@ const Story = () => {
         >
           <img 
             ref={imageInnerRef}
-            src="/breath-bg.webp" 
-            className="absolute inset-0 w-full h-full object-cover scale-[1.2] filter brightness-75"
+            src="/story-field.webp" 
+            className="absolute inset-0 w-full h-full object-cover scale-[1.2]"
             alt="Process"
           />
+          <div className="absolute inset-0 bg-black/25 z-[11] pointer-events-none" />
         </div>
 
-        {/* Text reveals - STACKED ON MOBILE */}
         <div 
           ref={revealedTextRef}
           className="absolute inset-x-0 bottom-10 md:inset-0 z-0 flex flex-col md:flex-row items-center justify-around md:justify-between px-6 md:px-32 opacity-0 translate-y-10 md:translate-x-10 pointer-events-none"
@@ -230,13 +240,13 @@ const Story = () => {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
           <div className="w-full lg:w-1/2">
             <div className="relative aspect-[4/5] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-              <img src="/card-1.webp" alt="Studio" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/science/rpi-field.webp" alt="ARISA di lapangan" className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
           <div className="w-full lg:w-1/2 space-y-8 md:space-y-12">
-            <h2 className="font-display text-4xl md:text-7xl tracking-tighter">Kecerdasan <br/> Di Lahan Petani.</h2>
+            <h2 className="font-display text-4xl md:text-7xl tracking-tighter">Teknologi <br/> Di Lahan Petani.</h2>
             <p className="font-prose text-base md:text-lg text-foreground/70 leading-[1.85] italic">
-              Penelitian ini lahir dari sawah dan berbakti untuk sawah masa depan. Memanfaatkan pemrosesan Edge-AI untuk menghapus dinding birokrasi informasi antara ahli botani dan para pahlawan pangan nasional, karena keputusan darurat tidak boleh menunggu koneksi.
+              Penelitian ini berangkat langsung dari sawah. ARISA memanfaatkan pemrosesan Edge-AI agar hasil analisis tersedia secara real-time tanpa bergantung pada koneksi internet, karena keputusan penanganan penyakit tanaman tidak bisa menunggu sinyal.
             </p>
             <div className="flex gap-8 md:gap-12 border-t border-foreground/10 pt-8 md:pt-12">
               <div>
@@ -244,34 +254,41 @@ const Story = () => {
                 <span className="text-[10px] uppercase tracking-widest opacity-50">Siswa Peneliti</span>
               </div>
               <div>
-                <span className="block text-2xl md:text-3xl font-display mb-1 md:mb-2">1,500+</span>
+                <span className="block text-2xl md:text-3xl font-display mb-1 md:mb-2">50+</span>
                 <span className="text-[10px] uppercase tracking-widest opacity-50">Sampel Uji Coba</span>
+              </div>
+              <div>
+                <span className="block text-2xl md:text-3xl font-display mb-1 md:mb-2">8</span>
+                <span className="text-[10px] uppercase tracking-widest opacity-50">Petani Mitra</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Chronicles Timeline - COMPACT FOR MOBILE */}
-      <section ref={timelineRef} className="py-20 md:py-32 bg-foreground text-background border-t border-background/20 relative z-10">
+      {/* ═══ NEW: Testimonials ═══ */}
+      <Testimonials />
+
+      {/* Chronicles Timeline */}
+      <section ref={timelineRef} className="py-20 md:py-32 bg-background text-foreground border-t border-foreground/10 relative z-10">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="font-display text-4xl md:text-7xl mb-16 md:mb-24 text-center">Fase Eksekusi</h2>
-          <div className="relative border-l border-background/20 pl-6 md:pl-0 md:border-none space-y-16 md:space-y-24">
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-background/20 -translate-x-1/2" />
+          <div className="relative border-l border-foreground/20 pl-6 md:pl-0 md:border-none space-y-16 md:space-y-24">
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-foreground/20 -translate-x-1/2" />
             
             {[
-              { year: "Bulan 1", title: "Konseptualisasi", desc: "Observasi intensif di lapangan serta rancang purwarupa ARISA melibatkan Raspberry Pi dan modul optik.", pos: "left" },
-              { year: "Bulan 2 - 3", title: "Akuisisi dan Anotasi", desc: "Ribuan citra daun padi diekstrak langsung, dianalisis di bawah mikroskop piksel, dan dilatih oleh ahli agronomi tersertifikasi secara intens.", pos: "right" },
-              { year: "Bulan 4 - 5", title: "Sinkronisasi AI", desc: "Integrasi algoritma komputasi di Raspberry Pi, serta merancang komunikasi asinkron antara antarmuka Flutter dengan perangkat pintar.", pos: "left" }
+              { year: "Bulan 1", title: "Persiapan & Perakitan", desc: "Observasi lapangan awal, kajian pustaka, dan perakitan prototipe ARISA menggunakan Raspberry Pi 4 dan modul kamera.", pos: "left" },
+              { year: "Bulan 2 - 3", title: "Akuisisi & Anotasi Data", desc: "Pengumpulan citra daun padi di sawah mitra, anotasi segmentasi oleh 2 anotator menggunakan LabelMe/CVAT, dan pelatihan model AI.", pos: "right" },
+              { year: "Bulan 4 - 5", title: "Integrasi & Pengujian", desc: "Deployment model TFLite di Raspberry Pi, pengembangan antarmuka Flutter, dan uji lapangan dengan 50 sampel serta 8 petani mitra.", pos: "left" }
             ].map((item, i) => (
               <div key={i} className="timeline-item relative flex flex-col md:flex-row justify-between items-start group">
-                <div className="hidden md:block absolute left-1/2 top-2 w-3 h-3 bg-background rounded-full -translate-x-1/2 transition-all group-hover:scale-150" />
+                <div className="hidden md:block absolute left-1/2 top-2 w-3 h-3 bg-foreground rounded-full -translate-x-1/2 transition-all group-hover:scale-150" />
                 <div className={`md:w-[45%] ${item.pos === 'left' ? 'md:text-right md:pr-16' : 'md:order-2 md:pl-16'}`}>
-                  <span className="font-body text-background/50 tracking-widest text-xs uppercase">{item.year}</span>
+                  <span className="font-body text-foreground/70 tracking-widest text-xs uppercase">{item.year}</span>
                   <h3 className="font-display text-2xl md:text-3xl mt-1 md:mt-2">{item.title}</h3>
                 </div>
                 <div className={`mt-2 md:mt-0 md:w-[45%] ${item.pos === 'left' ? 'md:pl-16' : 'md:order-1 md:text-right md:pr-16'}`}>
-                  <p className="font-prose text-background/80 leading-relaxed text-sm italic">{item.desc}</p>
+                  <p className="font-prose text-foreground/80 leading-relaxed text-sm italic">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -283,10 +300,10 @@ const Story = () => {
       <section className="py-24 md:py-48 px-6 bg-background relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="font-prose text-xl md:text-3xl leading-[1.7] text-foreground/80 italic">
-            "Menyatukan kecerdasan mesin mutakhir dengan nurani ekologis, demi ketahanan pertanian untuk ibu pertiwi."
+            "Kami percaya bahwa teknologi yang baik adalah teknologi yang bisa digunakan oleh siapa saja, termasuk petani yang belum pernah menyentuh komputer."
           </h2>
           <div className="w-12 md:w-16 h-px bg-foreground/20 mx-auto" />
-          <p className="font-body uppercase tracking-[0.2em] text-[10px] md:text-xs text-foreground/50">
+          <p className="font-body uppercase tracking-[0.2em] text-[10px] md:text-xs text-foreground/70">
             Arief Fajar & Reza Arrofi, 2026
           </p>
         </div>

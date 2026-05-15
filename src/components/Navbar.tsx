@@ -11,9 +11,10 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'Research', href: '/story' },
-  { label: 'Method', href: '/craft' },
-  { label: 'Field Test', href: '/journey' },
+  { label: 'Research Base', href: '/research' },
+  { label: 'Methodology', href: '/methodology' },
+  { label: 'Field Test', href: '/field-test' },
+  { label: 'About Us', href: '/about' },
 ];
 
 const Navbar = () => {
@@ -54,6 +55,17 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Handle resize to close mobile menu when switching to desktop view
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
+
   // Determine colors based on state
   const textColorClass = 'text-foreground';
   const hoverColorClass = 'hover:text-foreground/80';
@@ -83,12 +95,12 @@ const Navbar = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className={`pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-between w-full ${
             isScrolled
-              ? 'mt-4 max-w-5xl py-2 px-6 navbar-glass rounded-full border shadow-soft'
+              ? 'mt-4 max-w-6xl py-3 px-8 navbar-glass rounded-full border shadow-soft'
               : 'mt-0 max-w-7xl py-6 px-4 bg-transparent border-transparent shadow-none'
           }`}
         >
           {/* 1. Left: Logo */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <Link
               to="/"
               className="group relative flex items-center gap-2.5 w-max"
@@ -105,14 +117,14 @@ const Navbar = () => {
           </div>
 
           {/* 2. Middle: Centered Navigation */}
-          <div className="hidden md:flex flex-none items-center gap-8">
+          <div className="hidden md:flex flex-none items-center justify-center gap-6 lg:gap-8">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.href;
               return (
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`relative py-2 font-body text-[0.75rem] uppercase tracking-[0.2em] transition-all duration-500 group ${
+                  className={`relative py-2 font-body text-[0.7rem] lg:text-[0.75rem] uppercase tracking-[0.2em] transition-all duration-500 group whitespace-nowrap ${
                     isActive
                       ? `${textColorClass} font-medium`
                       : `${textColorClass} opacity-70 ${hoverColorClass} hover:opacity-100`
@@ -132,7 +144,7 @@ const Navbar = () => {
           </div>
 
           {/* 3. Right: CTA Button & Theme Toggle */}
-          <div className="hidden md:flex flex-1 justify-end items-center gap-4">
+          <div className="hidden md:flex flex-1 min-w-0 justify-end items-center gap-4">
             
             {/* Theme Switcher Button */}
             {mounted && (
@@ -151,7 +163,7 @@ const Navbar = () => {
 
             <Link
               to="/contact"
-              className="px-6 py-2.5 rounded-full font-body text-[0.7rem] uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-lg hover:-translate-y-0.5 border border-primary/20 text-foreground hover:bg-primary hover:text-primary-foreground"
+              className="whitespace-nowrap flex-shrink-0 px-6 py-2.5 rounded-full font-body text-[0.7rem] uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-lg hover:-translate-y-0.5 border border-primary/20 text-foreground hover:bg-primary hover:text-primary-foreground"
             >
               Get in Touch
             </Link>
@@ -200,7 +212,7 @@ const Navbar = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-[45] flex flex-col items-center justify-center bg-background/95 backdrop-blur-3xl origin-top"
+            className="fixed inset-0 z-[45] flex flex-col items-center justify-center bg-background/95 backdrop-blur-md origin-top"
           >
             <div className="flex flex-col items-center gap-6 w-full px-6">
               <img

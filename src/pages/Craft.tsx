@@ -3,6 +3,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
 import ZoomShowcase from '../sections/ZoomShowcase';
+import AIGallery from '../sections/AIGallery';
+import DashboardMockup from '../sections/DashboardMockup';
+import InteractiveDemo from '../sections/InteractiveDemo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,29 +29,29 @@ const Craft = () => {
   const crafts = [
     {
       title: 'Perangkat Keras',
-      desc: 'Raspberry Pi 4 Model B dirakit dalam casing pelindung yang tahan banting. Pusat komputasi independen di lapangan.',
-      img: '/card-1.webp',
+      desc: 'Raspberry Pi 4 Model B dirakit dalam casing IP65 tahan air dan debu. Unit komputasi independen yang beroperasi langsung di lahan pertanian.',
+      img: '/craft-hardware.webp',
       bgColor: 'bg-background',
       textColor: 'text-foreground'
     },
     {
       title: 'Vision AI',
-      desc: 'Kamera mikroskopik menangkap detail terkecil dari lesi daun. Mengartikulasikan dunia biologis ke dalam data biner.',
-      img: '/card-2.webp',
+      desc: 'Kamera RPi Module v2 (8MP) menangkap detail lesi pada daun padi. Setiap citra diproses untuk analisis visual tingkat piksel.',
+      img: '/craft-vision.webp',
       bgColor: 'bg-foreground',
       textColor: 'text-background' 
     },
     {
       title: 'Algoritma Analitik',
-      desc: 'Integrasi arsitektur U-Net dan EfficientNet untuk pengenalan pola yang presisi, diuji langsung di lahan pertanian.',
-      img: '/card-3.webp',
+      desc: 'U-Net+MobileNetV2 untuk segmentasi dan EfficientNet-B0 untuk klasifikasi. Model dilatih dan divalidasi dengan data lapangan.',
+      img: '/craft-algorithm.webp',
       bgColor: 'bg-background',
       textColor: 'text-foreground'
     },
     {
-      title: 'Penerapan Mandiri',
-      desc: 'Semua komputasi dilakukan secara lokal menggunakan format TensorFlow Lite. Memastikan latensi rendah tanpa koneksi awan.',
-      img: '/hero-bg.webp',
+      title: 'Edge Deployment',
+      desc: 'Semua komputasi dilakukan secara lokal menggunakan TFLite INT8 Quantization. Latensi rendah tanpa koneksi internet.',
+      img: '/science/architecture.webp',
       bgColor: 'bg-foreground',
       textColor: 'text-background'
     }
@@ -80,7 +83,7 @@ const Craft = () => {
 
           const content = panel.querySelector('.panel-content');
           gsap.to(content, {
-            scale: 0.95, // Less scale for mobile stability
+            scale: 0.95,
             y: -30,
             scrollTrigger: {
               trigger: panel,
@@ -144,7 +147,7 @@ const Craft = () => {
         </motion.p>
       </div>
 
-      {/* Stacked Panels - MOBILE OPTIMIZED */}
+      {/* Stacked Panels */}
       <div className="relative w-full">
         {crafts.map((craft, i) => (
           <div 
@@ -156,8 +159,8 @@ const Craft = () => {
             
             <div className="panel-content w-full h-full flex flex-col md:flex-row items-center justify-between">
               <div className="w-full md:w-1/2 p-8 md:p-24 flex flex-col justify-center h-1/2 md:h-full z-10">
-                <span className="font-body opacity-50 uppercase tracking-[0.3em] text-[10px] md:text-sm mb-2 md:mb-4">
-                  0{i + 1} // Medium
+                <span className="font-body opacity-80 uppercase tracking-[0.3em] text-[10px] md:text-sm mb-2 md:mb-4">
+                  0{i + 1} // Pipeline
                 </span>
                 <h2 className="font-display text-4xl md:text-7xl mb-4 md:mb-6 tracking-tighter">{craft.title}</h2>
                 <p className="font-prose opacity-80 text-sm md:text-base max-w-md leading-[1.85] italic">
@@ -178,6 +181,9 @@ const Craft = () => {
         ))}
       </div>
 
+      {/* ═══ NEW: AI Segmentation Gallery ═══ */}
+      <AIGallery />
+
       {/* Materials Deep Dive */}
       <section className="py-24 md:py-48 bg-background">
         <div className="max-w-7xl mx-auto px-6">
@@ -192,17 +198,17 @@ const Craft = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 <div>
                   <h4 className="font-display text-xl md:text-2xl mb-2">Anotasi Piksel</h4>
-                  <p className="font-prose text-xs md:text-sm text-foreground/60 italic">Tiap citra daun diisolasi menggunakan perangkat lunak presisi agar lesi tak luput terhitung.</p>
+                  <p className="font-prose text-xs md:text-sm text-foreground/70 italic">Tiap citra daun diisolasi menggunakan LabelMe/CVAT oleh 2 anotator independen. Target IoU ≥ 0.75.</p>
                 </div>
                 <div>
                   <h4 className="font-display text-xl md:text-2xl mb-2">Optimasi Edge</h4>
-                  <p className="font-prose text-xs md:text-sm text-foreground/60 italic">Model dilatih kemudian diformulasikan ke kuantisasi terendah agar irit daya, namun tetap presisi.</p>
+                  <p className="font-prose text-xs md:text-sm text-foreground/70 italic">Model dilatih kemudian diformulasikan ke Dynamic Range Quantization INT8 agar irit daya, namun tetap presisi.</p>
                 </div>
               </div>
             </div>
             <div className="relative order-1 lg:order-2 w-full max-w-md lg:max-w-none mx-auto">
               <div className="aspect-square rounded-[40px] md:rounded-[100px] overflow-hidden rotate-3 shadow-2xl">
-                <img src="/breath-bg.webp" alt="Texture" className="w-full h-full object-cover scale-125" loading="lazy" />
+                <img src="/science/leaf-severe.webp" alt="Dataset sample" className="w-full h-full object-cover scale-125" loading="lazy" />
               </div>
             </div>
           </div>
@@ -210,23 +216,29 @@ const Craft = () => {
       </section>
 
       {/* The Ritual */}
-      <section className="py-24 md:py-48 bg-foreground text-background">
+      <section className="py-24 md:py-48 bg-muted/50 text-foreground border-y border-border">
         <div className="max-w-4xl mx-auto px-6 text-left md:text-center">
           <h2 className="font-display text-4xl md:text-8xl mb-12 md:mb-24 tracking-tighter">Algoritma.</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
             {[
-              { t: "Akuisisi", d: "Menyerap data visual dari daun padi dalam fraksi detik." },
-              { t: "Segmentasi", d: "U-Net mengisolasi wilayah yang terinfeksi patogen." },
-              { t: "Keputusan", d: "Interpretasi klasifikasi untuk tindakan agronomi segera." }
+              { t: "Akuisisi", d: "RPi Camera Module v2 menangkap citra daun padi pada resolusi 8MP untuk analisis visual." },
+              { t: "Segmentasi", d: "U-Net+MobileNetV2 mengisolasi wilayah terinfeksi pada level piksel secara otomatis." },
+              { t: "Keputusan", d: "EfficientNet-B0 mengklasifikasi stadium penyakit, lalu DSI dihitung untuk rekomendasi tindakan." }
             ].map((step, i) => (
               <div key={i}>
-                <span className="text-primary font-display text-2xl md:text-4xl mb-4 md:mb-8 block italic">0{i+1}. {step.t}</span>
-                <p className="font-prose text-background/70 text-sm md:text-base leading-relaxed italic">{step.d}</p>
+                <span className="text-kaleo-terracotta font-display text-2xl md:text-4xl mb-4 md:mb-8 block italic">0{i+1}. {step.t}</span>
+                <p className="font-prose text-muted-foreground text-sm md:text-base leading-relaxed italic">{step.d}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* ═══ NEW: Interactive AI Demo ═══ */}
+      <InteractiveDemo />
+
+      {/* ═══ NEW: Farmer Dashboard Mockup ═══ */}
+      <DashboardMockup />
 
       {/* Scroll-Driven Zoom Scale Showcase - Process Pipeline */}
       <ZoomShowcase />
@@ -235,15 +247,15 @@ const Craft = () => {
       <section ref={galleryRef} className="py-20 md:py-48 bg-background relative z-30">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 md:mb-32">
-            <h2 className="font-display text-4xl md:text-7xl tracking-tighter mb-4">Presisi dalam <br className="md:hidden"/> Kesederhanaan.</h2>
-            <p className="font-prose text-sm md:text-lg text-foreground/70 max-w-xl italic">Dari kerumitan matematika jaringan saraf menjadi sekian baris instruksi arif bagi sang petani.</p>
+            <h2 className="font-display text-4xl md:text-7xl tracking-tighter mb-4">Analisis Cerdas, <br className="md:hidden"/> Penggunaan Mudah.</h2>
+            <p className="font-prose text-sm md:text-lg text-foreground/70 max-w-xl italic">Mengubah kompleksitas arsitektur model kecerdasan buatan menjadi antarmuka sederhana yang langsung dapat dimanfaatkan oleh petani.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
             <div className="gallery-item aspect-[4/5] rounded-tl-[40px] md:rounded-tl-[100px] overflow-hidden">
-              <img src="/grid-1.webp" className="w-full h-full object-cover" alt="Craft 1" loading="lazy" />
+              <img src="/hero-bg.webp" className="w-full h-full object-cover" alt="Analisis di lapangan" loading="lazy" />
             </div>
             <div className="gallery-item aspect-[3/4] md:mt-32 rounded-br-[40px] md:rounded-br-[100px] overflow-hidden">
-              <img src="/grid-2.webp" className="w-full h-full object-cover" alt="Craft 2" loading="lazy" />
+              <img src="/craft-vision.webp" className="w-full h-full object-cover" alt="Teknologi vision" loading="lazy" />
             </div>
           </div>
         </div>
@@ -252,10 +264,10 @@ const Craft = () => {
       {/* Final Callout */}
       <section className="py-24 md:py-48 bg-background flex flex-col items-center justify-center relative z-30 px-6">
         <h2 className="font-display text-[15vw] md:text-[10vw] text-center leading-none uppercase tracking-tighter opacity-10 select-none">
-          DIBUAT DENGAN PRESISI
+          METODE PENELITIAN
         </h2>
         <div className="mt-8 md:mt-[-5vw] text-center">
-           <p className="font-display text-2xl md:text-5xl tracking-tighter">Kemanusiaan menyertai inovasi, <br/> <span className="italic">ilmu menjawab tantangan.</span></p>
+           <p className="font-display text-2xl md:text-5xl tracking-tighter">Dari hipotesis ke validasi, <br/> <span className="italic">setiap langkah terukur.</span></p>
         </div>
       </section>
     </motion.div>

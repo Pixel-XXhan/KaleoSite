@@ -21,33 +21,33 @@ gsap.registerPlugin(ScrollTrigger);
 const insights = [
   {
     number: '01',
-    label: 'HYPERSPECTRAL',
-    title: 'Analisis Multispektral',
+    label: 'SEGMENTASI',
+    title: 'Analisis Citra Daun',
     description:
-      'Menangkap pola visual melampaui spektrum cahaya tampak. Setiap piksel daun dianalisis untuk mendeteksi anomali biologis yang tak kasat mata.',
-    stat: '98.2%',
-    statLabel: 'Detection Accuracy',
-    image: '/grid-1.webp',
+      'Model U-Net+MobileNetV2 menganalisis setiap piksel citra daun untuk memisahkan jaringan sehat dan area lesi penyakit secara otomatis.',
+    stat: 'U-Net',
+    statLabel: 'Segmentation Model',
+    image: '/science/leaf-healthy.webp',
   },
   {
     number: '02',
-    label: 'REAL-TIME',
-    title: 'Inferensi Waktu Nyata',
+    label: 'EDGE-AI',
+    title: 'Inferensi Lokal',
     description:
-      'Komputasi tepi memproses 30+ frame per detik. Tanpa latensi, tanpa ketergantungan jaringan, tanpa kompromi.',
-    stat: '30+',
-    statLabel: 'Edge FPS',
-    image: '/grid-2.webp',
+      'Komputasi berjalan langsung di Raspberry Pi 4 tanpa koneksi internet. Model TFLite INT8 memastikan latensi rendah di lingkungan lapangan.',
+    stat: 'TFLite',
+    statLabel: 'INT8 Quantized',
+    image: '/science/leaf-mild.webp',
   },
   {
     number: '03',
-    label: 'GEOSPATIAL',
-    title: 'Pemetaan Penyakit',
+    label: 'VALIDASI',
+    title: 'Uji Lapangan',
     description:
-      'Melacak pola penyebaran infeksi secara geospasial. Memvisualisasikan klaster risiko dan memprediksi arah propagasi patogen.',
-    stat: '1,500+',
-    statLabel: 'Validated Samples',
-    image: '/grid-3.webp',
+      'Sistem divalidasi dengan 50+ sampel citra baru dan dinilai oleh penyuluh pertanian BPP untuk memastikan relevansi klinis di lapangan.',
+    stat: '50+',
+    statLabel: 'Sampel Uji',
+    image: '/science/ai-segmentation.webp',
   },
 ];
 
@@ -137,28 +137,28 @@ const ParallaxDepthField = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-foreground text-background py-32 md:py-48 overflow-hidden"
+      className="relative bg-muted/50 text-foreground py-32 md:py-48 overflow-hidden border-y border-border"
     >
       {/* Background ambient */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full bg-kaleo-terracotta/5 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[30vw] h-[30vw] rounded-full bg-background/5 blur-[100px]" />
+        <div className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full bg-kaleo-terracotta/3 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[30vw] h-[30vw] rounded-full bg-foreground/3 blur-[100px]" />
       </div>
 
       {/* Section Header */}
       <div ref={headerRef} className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 mb-20 md:mb-32">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <span className="font-body text-[0.6rem] uppercase tracking-[0.3em] text-background/30 block mb-4">
-              Research Insights
+            <span className="font-body text-[0.6rem] uppercase tracking-[0.3em] text-kaleo-terracotta block mb-4">
+              Temuan Teknis
             </span>
-            <h2 className="font-display text-4xl md:text-7xl lg:text-8xl text-background tracking-tight leading-[0.95]">
+            <h2 className="font-display text-4xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95]">
               Temuan <br />
-              <span className="italic text-background/70">Riset.</span>
+              <span className="italic text-foreground/70">Riset.</span>
             </h2>
           </div>
-          <p className="font-prose text-sm md:text-base text-background/40 max-w-sm leading-[1.85] italic md:text-right">
-            Tiga pilar penemuan yang mendefinisikan arsitektur kecerdasan ARISA di lapangan.
+          <p className="font-prose text-sm md:text-base text-muted-foreground max-w-sm leading-[1.85] italic md:text-right">
+            Tiga aspek utama yang membentuk arsitektur ARISA di lapangan.
           </p>
         </div>
       </div>
@@ -223,17 +223,17 @@ const ParallaxDepthField = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display text-3xl md:text-4xl lg:text-5xl text-background tracking-tight mb-6 leading-[1.05]">
+                <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6 leading-[1.05]">
                   {insight.title}
                 </h3>
 
                 {/* Description */}
-                <p className="font-prose text-sm md:text-base text-background/50 leading-[1.85] italic max-w-sm">
+                <p className="font-prose text-sm md:text-base text-muted-foreground leading-[1.85] italic max-w-sm">
                   {insight.description}
                 </p>
 
                 {/* Decorative line */}
-                <div className="mt-8 w-full h-px bg-background/10" />
+                <div className="mt-8 w-full h-px bg-border" />
               </div>
             ))}
           </div>

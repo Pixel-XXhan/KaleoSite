@@ -319,7 +319,7 @@ export default function Contact() {
             </span>
           </h1>
           
-          <p className="mt-8 text-base font-prose text-muted-foreground/80 max-w-xl mx-auto leading-[1.85] italic">
+          <p className="mt-8 text-base font-prose text-muted-foreground max-w-xl mx-auto leading-[1.85] italic">
             Hubungi kami untuk mengeksplorasi potensi Agronomi Presisi dan sistem cerdas dalam ekosistem perladangan Anda. Kami menyimak.
           </p>
         </motion.div>
@@ -344,7 +344,7 @@ export default function Contact() {
             {/* Nav Removed Kaleo References */}
             <div className="relative z-20 flex gap-4">
                <div className="h-px w-12 bg-white/20 mt-3" />
-               <p className="text-sm tracking-widest text-foreground/40 uppercase">Sambung Rasa</p>
+               <p className="text-sm tracking-widest text-foreground/70 uppercase">Sambung Rasa</p>
             </div>
 
             <div className="relative z-20 flex items-end justify-center h-[450px] mt-10">
@@ -521,7 +521,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="relative z-20 flex items-center gap-8 text-sm text-foreground/50 font-medium">
+            <div className="relative z-20 flex items-center gap-8 text-sm text-foreground/70 font-medium">
               <a href="/" className="hover:text-primary transition-colors">Home</a>
               <a href="/story" className="hover:text-primary transition-colors">Research</a>
               <a href="/craft" className="hover:text-primary transition-colors">Method</a>

@@ -75,18 +75,18 @@ const Footer = () => {
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05]">
                 {footerConfig.heading}
               </h2>
-              <p className="font-prose text-base md:text-lg text-foreground/60 mt-6 max-w-lg leading-[1.85] italic">
+              <p className="font-prose text-base md:text-lg text-foreground/70 mt-6 max-w-lg leading-[1.85] italic">
                 {footerConfig.description}
               </p>
               {footerConfig.ctaText && (
-                <Link to="/contact">
+                <a href={footerConfig.contact[0]?.href || "mailto:arisachan2026@gmail.com"}>
                   <MagneticButton className="relative mt-8 px-8 py-4 border border-foreground/30 rounded-full font-body text-sm uppercase tracking-wider overflow-hidden transition-colors hover:border-foreground">
                     <span className="flex items-center gap-2">
                       {footerConfig.ctaText}
                       <ArrowUpRight className="w-4 h-4" />
                     </span>
                   </MagneticButton>
-                </Link>
+                </a>
               )}
             </motion.div>
 
@@ -102,7 +102,7 @@ const Footer = () => {
                 
                 {/* Contact Info */}
                 <div>
-                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/70 mb-5 flex items-center gap-2">
                     <span className="w-4 h-px bg-foreground/20" />
                     Contact
                   </h4>
@@ -127,13 +127,13 @@ const Footer = () => {
 
                 {/* Location */}
                 <div>
-                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/70 mb-5 flex items-center gap-2">
                     <span className="w-4 h-px bg-foreground/20" />
                     {footerConfig.locationLabel}
                   </h4>
                   <div className="flex items-start gap-3">
                     <span className="flex-shrink-0 w-8 h-8 rounded-full border border-foreground/15 flex items-center justify-center mt-0.5">
-                      <MapPin className="w-3.5 h-3.5 text-foreground/50" />
+                      <MapPin className="w-3.5 h-3.5 text-foreground/70" />
                     </span>
                     <p className="font-body text-sm text-foreground/70 leading-relaxed">
                       {footerConfig.address.map((line, i) => (
@@ -148,7 +148,7 @@ const Footer = () => {
 
                 {/* Quick Links */}
                 <div>
-                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                  <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/70 mb-5 flex items-center gap-2">
                     <span className="w-4 h-px bg-foreground/20" />
                     Explore
                   </h4>
@@ -172,7 +172,7 @@ const Footer = () => {
                 {/* Social */}
                 {footerConfig.socials.length > 0 && (
                   <div>
-                    <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/40 mb-5 flex items-center gap-2">
+                    <h4 className="font-body text-[0.65rem] uppercase tracking-[0.2em] text-foreground/70 mb-5 flex items-center gap-2">
                       <span className="w-4 h-px bg-foreground/20" />
                       {footerConfig.socialLabel}
                     </h4>
@@ -209,9 +209,8 @@ const Footer = () => {
               <div className="relative select-none">
                 <img
                   src="/assets/logo/logo-full.webp"
-                  alt="ARISA — Agronomic Risk Intelligence System for Agriculture"
+                  alt="ARISA - Agronomic Risk Intelligence System for Agriculture"
                   className="w-[280px] md:w-[420px] lg:w-[520px] object-contain opacity-40 dark:opacity-25 transition-opacity duration-700"
-                  style={{ filter: 'brightness(0.7) saturate(1.4)' }}
                 />
               </div>
             </div>
@@ -222,12 +221,12 @@ const Footer = () => {
         <div className="footer-gradient-line h-px w-full" />
         <div className="py-6 md:py-8">
           <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="font-body text-[0.65rem] text-foreground/40 tracking-wide">
+            <p className="font-body text-[0.65rem] text-foreground/70 tracking-wide">
               {footerConfig.copyright}
             </p>
-            <div className="flex items-center gap-1.5 text-foreground/30">
+            <div className="flex items-center gap-1.5 text-foreground/70">
               <span className="font-body text-[0.6rem] tracking-wide">Crafted with precision by</span>
-              <span className="font-display text-sm italic text-foreground/50">Arief & Reza</span>
+              <span className="font-display text-sm italic text-foreground/70">Arief & Reza</span>
             </div>
           </div>
         </div>

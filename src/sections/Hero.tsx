@@ -11,6 +11,7 @@ const Hero = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLButtonElement>(null);
   const [isFirstVisit] = useState(() => {
     // Only show the big entrance animation on first page load ever
     if (sessionStorage.getItem('arisa-hero-seen')) return false;
@@ -24,11 +25,12 @@ const Hero = () => {
     const subtitle = subtitleRef.current;
     const image = imageRef.current;
     const overlay = overlayRef.current;
+    const cta = ctaRef.current;
 
-    if (!section || !title || !subtitle || !image || !overlay) return;
+    if (!section || !title || !subtitle || !image || !overlay || !cta) return;
 
     const ctx = gsap.context(() => {
-      const isMobile = window.innerWidth < 768;
+      // Entrance animations
 
       // ─── Entrance Animation ───
       // Only play the big cinematic entrance on very first page load.
@@ -53,25 +55,20 @@ const Hero = () => {
           { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 1 },
           '-=0.8'
+        )
+        .fromTo(
+          cta,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1 },
+          '-=0.6'
         );
       }
 
-      // ─── Scroll-Driven Parallax (always active) ───
-      // Image parallax: moves down as you scroll
-      gsap.to(image, {
-        y: isMobile ? 60 : 150,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
+      // Image parallax is removed for better performance and a clean, solid background.
 
-      // Overlay darkens as you scroll
+      // Overlay darkens further as you scroll
       gsap.to(overlay, {
-        opacity: 0.3,
+        opacity: 0.7,
         ease: 'none',
         scrollTrigger: {
           trigger: section,
@@ -86,7 +83,7 @@ const Hero = () => {
       // Without explicit "from" values, GSAP can't reverse back to the original state
       // when scrubbing backwards (scrolling up), causing text to permanently disappear.
       gsap.fromTo(
-        [title, subtitle],
+        [title, subtitle, cta],
         { opacity: 1, y: 0 },
         {
           opacity: 0,
@@ -110,7 +107,7 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[100svh] w-full overflow-hidden"
+      className="relative w-full h-screen min-h-[100vh] overflow-hidden"
     >
       {/* Background Image */}
       <div
@@ -120,15 +117,15 @@ const Hero = () => {
         <img
           src={heroConfig.backgroundImage}
           alt={heroConfig.backgroundAlt}
-          className="w-full h-full object-cover md:ken-burns"
+          className="w-full h-full object-cover"
           loading="eager"
         />
       </div>
 
-      {/* Gradient overlay for depth */}
+      {/* Gradient overlay for depth - starts at 0.5 for immediate contrast */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 bg-kaleo-charcoal opacity-0"
+        className="absolute inset-0 bg-black opacity-50"
       />
 
       {/* Subtle fog effect overlay */}
@@ -139,7 +136,7 @@ const Hero = () => {
         {/* Main Title */}
         <h1
           ref={titleRef}
-          className="font-display text-kaleo-cream text-display tracking-tight select-none"
+          className="font-display text-white text-display tracking-tight select-none"
           style={{
             textShadow: '0 4px 30px rgba(0,0,0,0.3)',
           }}
@@ -150,10 +147,25 @@ const Hero = () => {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="font-body text-kaleo-cream/90 text-sm md:text-base uppercase tracking-[0.3em] mt-6"
+          className="font-body text-white font-bold text-sm md:text-base uppercase tracking-[0.3em] mt-6 text-center select-none"
+          style={{
+            textShadow: '0 2px 10px rgba(0,0,0,0.8)',
+          }}
         >
           {heroConfig.subtitle}
         </p>
+
+        {/* CTA Button */}
+        <button
+          ref={ctaRef}
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+          }}
+          className="mt-12 px-8 py-4 bg-white text-black font-body text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+        >
+          EXPLORE SYSTEM
+        </button>
       </div>
 
       {/* Bottom gradient for seamless transition */}

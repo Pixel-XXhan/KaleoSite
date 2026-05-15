@@ -20,8 +20,8 @@ export interface HeroConfig {
 }
 
 export const heroConfig: HeroConfig = {
-  backgroundImage: "/hero-bg.webp",
-  backgroundAlt: "Pemandangan sawah saat jam keemasan dengan atmosfer yang menenangkan",
+  backgroundImage: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop",
+  backgroundAlt: "Pemandangan alam pegunungan berkabut yang megah",
   title: "ARISA",
   subtitle: "PRECISION AGRONOMY INTELLIGENCE",
 };
@@ -34,8 +34,8 @@ export interface NarrativeTextConfig {
 }
 
 export const narrativeTextConfig: NarrativeTextConfig = {
-  line1: "Menjaga harmoni alam dan teknologi,",
-  line2: "demi ketahanan pangan masa depan.",
+  line1: "Teknologi komputasi tepi",
+  line2: "untuk pemantauan tanaman yang lebih cerdas.",
   line3: "EDGE COMPUTING. PRECISION DETECTION. SUSTAINABLE AGRONOMY.",
 };
 
@@ -58,42 +58,42 @@ export interface ZigZagGridConfig {
 
 export const zigZagGridConfig: ZigZagGridConfig = {
   sectionLabel: "INNOVATION PILLARS",
-  sectionTitle: "Simbiosis Alam dan Kecerdasan",
+  sectionTitle: "Pilar Inovasi ARISA",
   items: [
     {
       id: "pemantauan",
       title: "Pemantauan Berkelanjutan",
       subtitle: "EDGE-AI SYSTEM",
-      description: "Sistem kami membawa kecerdasan langsung ke lahan pertanian tanpa bergantung pada konektivitas internet. Melalui perangkat komputasi tepi mutakhir, kondisi setiap helai daun padi dipindai dan diproses secara real-time.",
+      description: "Seluruh pemrosesan AI berjalan langsung di perangkat Raspberry Pi tanpa koneksi internet. Kondisi daun padi dipindai dan dianalisis secara real-time di lokasi lahan.",
       image: "/grid-1.webp",
-      imageAlt: "Komputasi tepi Edge-AI dengan nuansa estetis",
+      imageAlt: "Sistem Edge-AI di lahan pertanian",
       reverse: false,
     },
     {
       id: "analisis",
       title: "Analisis Presisi",
       subtitle: "DEEP LEARNING",
-      description: "Arsitektur U-Net dan EfficientNet bekerja berdampingan dengan keanggunan algoritmik. Mengidentifikasi jaringan sehat dan membaca gejala biologis sekecil apapun untuk mengantisipasi penurunan hasil panen sebelum memburuk.",
+      description: "Model U-Net dan EfficientNet mengidentifikasi area daun yang sehat dan terinfeksi hingga tingkat piksel. Deteksi dini membantu mencegah penurunan hasil panen.",
       image: "/grid-2.webp",
-      imageAlt: "Ilustrasi pemrosesan citra digital pertanian dengan cahaya hangat",
+      imageAlt: "Pemrosesan citra digital tanaman padi",
       reverse: true,
     },
     {
       id: "risiko",
-      title: "Skala Risiko Agronomi",
+      title: "Indeks Risiko Agronomi",
       subtitle: "SCIENTIFIC INTEGRATION",
-      description: "ARISA tidak hanya melihat, namun juga menerjemahkan. Mengolah temuan visual menjadi Disease Severity Index dan menghadirkan interpretasi metrik risiko yang holistik dan tervalidasi secara akademis.",
+      description: "Hasil segmentasi citra diolah menjadi Disease Severity Index (DSI), sebuah skor kuantitatif yang membantu petani memahami tingkat keparahan penyakit tanaman.",
       image: "/grid-3.webp",
-      imageAlt: "Instrumen ilmiah bersanding dengan tanaman botani",
+      imageAlt: "Visualisasi data indeks risiko agronomi",
       reverse: false,
     },
     {
       id: "aksesibilitas",
-      title: "Aksesibilitas Harmonis",
+      title: "Akses untuk Semua",
       subtitle: "INCLUSIVE TECHNOLOGY",
-      description: "Komunikasi data yang mulus melalui antarmuka canggih dirancang sedemikian rupa agar selaras dengan keseharian petani. Interaksi tanpa batas antara manusia, mesin, dan alam demi ekosistem agrikultur cerdas.",
+      description: "Informasi teknis diterjemahkan ke dalam indikator warna sederhana (Hijau/Kuning/Merah) yang mudah dipahami oleh petani tanpa latar belakang teknologi.",
       image: "/grid-4.webp",
-      imageAlt: "Lanskap sawah membentang luas di bawah sinar mentari",
+      imageAlt: "Antarmuka sederhana untuk petani",
       reverse: true,
     },
   ],
@@ -110,10 +110,10 @@ export interface BreathSectionConfig {
 
 export const breathSectionConfig: BreathSectionConfig = {
   backgroundImage: "/breath-bg.webp",
-  backgroundAlt: "Panorama pegunungan dan persawahan yang megah dan damai",
+  backgroundAlt: "Panorama persawahan dan pegunungan",
   title: "Harmoni",
   subtitle: "NATURE & TECHNOLOGY",
-  description: "Di setiap hembusan angin yang menyapa rumpun padi, ada kehidupan yang patut dijaga. Karya kami adalah bentuk penghormatan pada dedikasi petani, sebuah sinergi merawat asa ketahanan pangan di tanah Nusantara.",
+  description: "ARISA menggabungkan teknologi komputasi tepi dengan ilmu agronomi untuk mendukung pemantauan tanaman yang lebih akurat, efisien, dan dapat diakses langsung oleh petani di lapangan.",
 };
 
 // Card Stack Section
@@ -133,27 +133,27 @@ export interface CardStackConfig {
 
 export const cardStackConfig: CardStackConfig = {
   sectionTitle: "Esensi Sistem",
-  sectionSubtitle: "ENGINEERED FOR THE FUTURE",
+  sectionSubtitle: "ENGINEERED FOR THE FIELD",
   cards: [
     {
       id: 1,
       image: "/card-1.webp",
       title: "Perangkat Tangguh",
-      description: "Dirakit lengkap dengan balutan material antiair yang elegan dan presisi. ARISA senantiasa awas memproses data di hamparan sawah, tidak retak di bawah sinar terik pelita hari.",
+      description: "Casing IP65 tahan air dan debu melindungi unit komputasi di kondisi lapangan. Sistem pendingin aktif menjaga suhu operasi tetap stabil sepanjang hari.",
       rotation: -2,
     },
     {
       id: 2,
       image: "/card-2.webp",
       title: "Kecerdasan Mandiri",
-      description: "Kami melatih jaringan saraf tiruan mutakhir untuk memahami setiap stadium kehidupan padi. Mengenali corak penyakit dan kondisi agronomis dengan tingkat akurasi yang melampaui visual manusia biasa.",
+      description: "Model deep learning dilatih untuk mengenali pola penyakit dan kondisi agronomis pada daun padi dengan tingkat akurasi yang konsisten dan terukur.",
       rotation: 1,
     },
     {
       id: 3,
       image: "/card-3.webp",
-      title: "Antarmuka Humanis",
-      description: "Segala temuan kompleks sistem diformulasikan ke dalam kesederhanaan. Sebuah estetika aplikasi yang menyajikan wawasan bermakna secara instan, menuntun penggunanya pada tindakan yang arif.",
+      title: "Antarmuka Sederhana",
+      description: "Hasil analisis AI ditampilkan dalam format visual yang mudah dipahami. Petani mendapat rekomendasi tindakan langsung tanpa perlu memahami teknologi di baliknya.",
       rotation: -1,
     },
   ],
@@ -189,8 +189,8 @@ export interface FooterConfig {
 }
 
 export const footerConfig: FooterConfig = {
-  heading: "Kolaborasi Masa Depan",
-  description: "ARISA bermula dari sebuah inisiatif di SMK Marhas Margahayu, Kabupaten Bandung. Jika Anda tergerak untuk merevolusi ekosistem agrikultur cerdas, atau sekadar berbagi visi penelitian yang mendalam, pintu kami senantiasa terbuka.",
+  heading: "Hubungi Kami",
+  description: "ARISA dikembangkan oleh tim peneliti SMK Marhas Margahayu, Kabupaten Bandung. Jika Anda tertarik untuk berkolaborasi atau ingin mengetahui lebih lanjut tentang penelitian ini, silakan hubungi kami.",
   ctaText: "Hubungi Peneliti",
   contact: [
     {
@@ -212,7 +212,7 @@ export const footerConfig: FooterConfig = {
   socials: [
     {
       platform: "instagram",
-      href: "https://instagram.com/arisa_project",
+      href: "https://www.instagram.com/arisachan.agritech",
     },
     {
       platform: "github",
@@ -220,11 +220,12 @@ export const footerConfig: FooterConfig = {
     },
   ],
   logoText: "ARISA",
-  copyright: "© 2026 ARISA — SMK Marhas Margahayu. All rights reserved.",
+  copyright: "© 2026 ARISA - SMK Marhas Margahayu. All rights reserved.",
   links: [
-    { label: "Research Base", href: "/story" },
-    { label: "Methodology", href: "/craft" },
-    { label: "Contact", href: "/contact" },
+    { label: "Research Base", href: "/research" },
+    { label: "Methodology", href: "/methodology" },
+    { label: "Field Test", href: "/field-test" },
+    { label: "About Us", href: "/about" },
   ],
   schoolName: "SMK Marhas Margahayu",
   tagline: "Precision Agronomy Intelligence",

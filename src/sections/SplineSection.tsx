@@ -105,9 +105,10 @@ export default function SplineSection() {
             <div className="absolute inset-10 rounded-full border border-foreground/10" />
             <div className="absolute inset-14 rounded-full border border-kaleo-terracotta/15" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <svg viewBox="0 0 60 60" className="w-16 h-16 text-foreground/10">
-                <polygon points="30,5 55,50 5,50" fill="none" stroke="currentColor" strokeWidth="1"/>
-                <circle cx="30" cy="35" r="10" fill="none" stroke="currentColor" strokeWidth="1"/>
+              <svg viewBox="0 0 60 60" className="w-24 h-24 text-kaleo-terracotta drop-shadow-lg">
+                <path d="M30 5 L55 50 L5 50 Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                <path d="M30 20 L45 45 L15 45 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeLinejoin="round"/>
+                <circle cx="30" cy="35" r="5" fill="currentColor"/>
               </svg>
             </div>
           </div>
