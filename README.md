@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=2000&auto=format&fit=crop" alt="Real Terraced Rice Field Indonesia" width="100%" style="border-radius: 4px; border: 1px solid #e2e8f0; margin-bottom: 24px;" />
 
-  <h1>ARISA: Agronomic Risk Intelligence & Sensing Apparatus</h1>
+  <h1>ARISA: Agronomic Risk Intelligence System for Agriculture</h1>
   <p><strong>An Edge-AI Driven IoT Framework for Precision Agriculture and Autonomous Disease Detection in Air-Gapped Environments.</strong></p>
   <p><i>Sistem Deteksi Penyakit Padi Berbasis Edge-AI untuk Ekosistem Pertanian Pintar Tanpa Internet.</i></p>
 
@@ -65,7 +65,7 @@ This repository serves as the technical artifact for the OPSI 2026 competition. 
 
 ## II. Abstract
 
-The detection of Bacterial Leaf Blight (*Xanthomonas oryzae*) in rice crops heavily relies on manual scouting by agricultural extension workers, a methodology constrained by human error, spatial limitations, and high latency in response. This repository details the frontend implementation of **ARISA (Agronomic Risk Intelligence & Sensing Apparatus)**, a decentralized Edge-AI framework designed to perform real-time, autonomous disease quantification in air-gapped agricultural environments. By operating a local inference node on ARM64 hardware and establishing an independent ad-hoc network, ARISA eliminates the dependency on continuous internet connectivity. The system computes the Disease Severity Index (DSI) locally and serves a reactive, high-performance dashboard for immediate agronomic decision-making.
+The detection of Bacterial Leaf Blight (*Xanthomonas oryzae*) in rice crops heavily relies on manual scouting by agricultural extension workers, a methodology constrained by human error, spatial limitations, and high latency in response. This repository details the frontend implementation of **ARISA (Agronomic Risk Intelligence System for Agriculture)**, a decentralized Edge-AI framework designed to perform real-time, autonomous disease quantification in air-gapped agricultural environments. By operating a local inference node on ARM64 hardware and establishing an independent ad-hoc network, ARISA eliminates the dependency on continuous internet connectivity. The system computes the Disease Severity Index (DSI) locally and serves a reactive, high-performance dashboard for immediate agronomic decision-making.
 
 ## III. Introduction
 
@@ -254,7 +254,7 @@ Repositori ini berfungsi sebagai artefak teknis untuk kompetisi OPSI 2026. Dokum
 
 ## II. Abstrak
 
-Deteksi penyakit Hawar Daun Bakteri (*Xanthomonas oryzae*) pada tanaman padi saat ini sangat bergantung pada pemantauan manual oleh petugas penyuluh lapangan (PPL). Metodologi ini rentan terhadap kesalahan manusia, keterbatasan spasial, dan tingginya latensi dalam penanganan. Repositori ini menjabarkan implementasi *frontend* dari **ARISA (Agronomic Risk Intelligence & Sensing Apparatus)**, sebuah kerangka kerja *Edge-AI* terdesentralisasi yang dirancang untuk melakukan kuantifikasi penyakit secara otonom dan *real-time* di lingkungan pertanian tanpa akses internet (air-gapped). Dengan mengoperasikan *node* inferensi lokal pada perangkat keras ARM64 dan membangun jaringan nirkabel mandiri, ARISA menghilangkan ketergantungan pada konektivitas *cloud*. Sistem ini menghitung Indeks Keparahan Penyakit (*Disease Severity Index/DSI*) secara lokal dan menyajikan *dashboard* interaktif berperforma tinggi untuk pengambilan keputusan agronomi seketika.
+Deteksi penyakit Hawar Daun Bakteri (*Xanthomonas oryzae*) pada tanaman padi saat ini sangat bergantung pada pemantauan manual oleh petugas penyuluh lapangan (PPL). Metodologi ini rentan terhadap kesalahan manusia, keterbatasan spasial, dan tingginya latensi dalam penanganan. Repositori ini menjabarkan implementasi *frontend* dari **ARISA (Agronomic Risk Intelligence System for Agriculture)**, sebuah kerangka kerja *Edge-AI* terdesentralisasi yang dirancang untuk melakukan kuantifikasi penyakit secara otonom dan *real-time* di lingkungan pertanian tanpa akses internet (air-gapped). Dengan mengoperasikan *node* inferensi lokal pada perangkat keras ARM64 dan membangun jaringan nirkabel mandiri, ARISA menghilangkan ketergantungan pada konektivitas *cloud*. Sistem ini menghitung Indeks Keparahan Penyakit (*Disease Severity Index/DSI*) secara lokal dan menyajikan *dashboard* interaktif berperforma tinggi untuk pengambilan keputusan agronomi seketika.
 
 ## III. Latar Belakang
 
