@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1590005024862-6b67679a29fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Real Terraced Rice Field" width="100%" style="border-radius: 4px; border: 1px solid #e2e8f0; margin-bottom: 24px;" />
+  <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=2000&auto=format&fit=crop" alt="Real Terraced Rice Field Indonesia" width="100%" style="border-radius: 4px; border: 1px solid #e2e8f0; margin-bottom: 24px;" />
 
   <h1>ARISA: Agronomic Risk Intelligence & Sensing Apparatus</h1>
   <p><strong>An Edge-AI Driven IoT Framework for Precision Agriculture and Autonomous Disease Detection in Air-Gapped Environments.</strong></p>
